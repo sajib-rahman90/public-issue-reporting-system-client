@@ -47,9 +47,9 @@ const Navber = () => {
                       ? "text-md text-orange-500 font-semibold"
                       : "text-md font-semibold"
                   }
-                  to={"/"}
+                  to={"/all-issues"}
                 >
-                  All Models
+                  All Issues
                 </NavLink>
               </li>
               <li>
@@ -61,40 +61,14 @@ const Navber = () => {
                   }
                   to={"/"}
                 >
-                  Add Model
-                </NavLink>
-              </li>
-              <li>
-                <NavLink
-                  className={({ isActive }) =>
-                    isActive
-                      ? "text-md text-orange-500 font-semibold"
-                      : "text-md font-semibold"
-                  }
-                  to={"/"}
-                >
-                  My Models
-                </NavLink>
-              </li>
-              <li>
-                <NavLink
-                  className={({ isActive }) =>
-                    isActive
-                      ? "text-md text-orange-500 font-semibold"
-                      : "text-md font-semibold"
-                  }
-                  to={"/"}
-                >
-                  My Purchase
+                  Home
                 </NavLink>
               </li>
             </ul>
           </div>
           <div className="flex items-center">
             <Link to="/" className="flex items-center gap-2 group">
-              <span className="text-xl font-semibold text-orange-500">
-                Public Issues
-              </span>
+              <span className="text-xl font-semibold ">Public Issues</span>
             </Link>
           </div>
         </div>
@@ -120,9 +94,9 @@ const Navber = () => {
                     ? "text-[16px] text-orange-500 font-semibold"
                     : "text-[16px] font-semibold"
                 }
-                to={"/"}
+                to={"/all-issues"}
               >
-                All Models
+                All Issues
               </NavLink>
             </li>
             <li>
@@ -134,7 +108,7 @@ const Navber = () => {
                 }
                 to={"/"}
               >
-                Add Model
+                Report Issue
               </NavLink>
             </li>
           </ul>
@@ -176,19 +150,7 @@ const Navber = () => {
                   }
                   to={"/"}
                 >
-                  My Purchase
-                </NavLink>
-              </li>
-              <li>
-                <NavLink
-                  className={({ isActive }) =>
-                    isActive
-                      ? "text-md text-orange-500 font-semibold"
-                      : "text-md font-semibold text-gray-800"
-                  }
-                  to={"/"}
-                >
-                  My Models
+                  Dashboard
                 </NavLink>
               </li>
 
@@ -201,7 +163,7 @@ const Navber = () => {
           </div>
 
           <Link
-            //   to={"/"}
+            to={"/login"}
             className="btn btn-sm rounded-lg bg-linear-to-r from-orange-400 to-orange-500 text-white py-2.5 font-medium hover:from-orange-500 hover:to-orange-600 hover:shadow-lg hover:-translate-y-0.5 transition-all duration-300 text-center"
           >
             {" "}
