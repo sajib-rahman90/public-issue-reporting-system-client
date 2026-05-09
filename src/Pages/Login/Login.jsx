@@ -1,6 +1,8 @@
 import { useForm } from "react-hook-form";
 import { FcGoogle } from "react-icons/fc";
-import { Link } from "react-router";
+import { Link, Navigate, useLocation, useNavigate } from "react-router";
+import useAuth from "../../Hooks/useAuth";
+import { toast } from "react-toastify";
 
 const Login = () => {
   const {
@@ -8,9 +10,39 @@ const Login = () => {
     handleSubmit,
     formState: { errors },
   } = useForm();
+  const { logInUserFunc, user, signInWithGoogleFunc } = useAuth();
 
-  const handleRegistration = (data) => {
+  const navigate = useNavigate();
+  const location = useLocation();
+  const from = location.state || "/";
+
+  if (user) return <Navigate to={from} replace={true} />;
+
+  const handleLogin = (data) => {
     console.log(data);
+    logInUserFunc(data.email, data.password)
+      .then((res) => {
+        console.log(res);
+        navigate(from, { replace: true });
+        toast.success("Login Successfull.");
+      })
+      .catch((err) => {
+        console.log(err);
+        toast.error(err?.message);
+      });
+  };
+
+  const handleGoogle = () => {
+    signInWithGoogleFunc()
+      .then((res) => {
+        console.log(res);
+        navigate(from, { replace: true });
+        toast.success("Google Sign in Successfull. ");
+      })
+      .catch((err) => {
+        console.log(err);
+        toast.error(err);
+      });
   };
   return (
     <div className="min-h-screen bg-slate-100 flex items-center justify-center px-4 py-8">
@@ -27,10 +59,7 @@ const Login = () => {
           </p>
 
           {/* FORM */}
-          <form
-            onSubmit={handleSubmit(handleRegistration)}
-            className="space-y-5"
-          >
+          <form onSubmit={handleSubmit(handleLogin)} className="space-y-5">
             {/* EMAIL */}
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-2">
@@ -44,7 +73,7 @@ const Login = () => {
                 className="w-full px-4 py-3 rounded-xl border border-gray-300 text-gray-700 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500"
               />
               {errors.email?.type === "required" && (
-                <p className="text-red-400">First name is required</p>
+                <p className="text-red-400">Enter your email.</p>
               )}
             </div>
 
@@ -57,29 +86,13 @@ const Login = () => {
               <div className="relative">
                 <input
                   type="password"
-                  {...register("password", {
-                    required: true,
-                    pattern: /^(?=.*[A-Z])(?=.*[a-z])(?=.*\d).{6,}$/,
-                  })}
+                  {...register("password")}
                   placeholder="Enter password"
                   className="w-full px-4 py-3 rounded-xl border border-gray-300 text-gray-700 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500"
                 />
                 {errors.password?.type === "required" && (
                   <p className="text-red-400">Valid password are required.</p>
                 )}
-                {errors.password?.type === "pattern" && (
-                  <p className="text-red-400">
-                    Password must contain uppercase, lowercase, number and be at
-                    least 6 characters.
-                  </p>
-                )}
-
-                <button
-                  type="button"
-                  className="absolute right-4 top-1/2 -translate-y-1/2 text-gray-500"
-                >
-                  {/* ICON */}
-                </button>
               </div>
             </div>
 
@@ -109,7 +122,10 @@ const Login = () => {
           </div>
 
           {/* GOOGLE */}
-          <button className="w-full py-3 rounded-xl border border-gray-300 bg-white hover:bg-gray-50 transition flex items-center justify-center gap-3 text-gray-700 font-medium">
+          <button
+            onClick={handleGoogle}
+            className="w-full py-3 rounded-xl border border-gray-300 bg-white hover:bg-gray-50 transition flex items-center justify-center gap-3 text-gray-700 font-medium"
+          >
             <FcGoogle size={22} />
             Continue with Google
           </button>

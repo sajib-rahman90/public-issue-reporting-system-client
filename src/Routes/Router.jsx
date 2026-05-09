@@ -4,6 +4,7 @@ import Home from "../Pages/Home/Home/Home";
 import Allissues from "../Pages/Allissues/Allissues";
 import Login from "../Pages/Login/Login";
 import Resigter from "../Pages/Register/Resigter";
+import PrivateRoute from "./PrivateRoute";
 
 export const router = createBrowserRouter([
   {
@@ -16,7 +17,11 @@ export const router = createBrowserRouter([
       },
       {
         path: "/all-issues",
-        element: <Allissues />,
+        element: (
+          <PrivateRoute>
+            <Allissues />
+          </PrivateRoute>
+        ),
       },
     ],
   },

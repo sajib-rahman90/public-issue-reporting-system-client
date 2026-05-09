@@ -1,6 +1,22 @@
 import { Link, NavLink } from "react-router";
+import useAuth from "../../../Hooks/useAuth";
+import { useForm } from "react-hook-form";
+import { toast } from "react-toastify";
 
 const Navber = () => {
+  const { user, signOutUserFunc } = useAuth();
+  // const { handleSubmit } = useForm();
+
+  const handleLogout = () => {
+    signOutUserFunc()
+      .then((res) => {
+        toast.success("Logout Successful.");
+      })
+      .catch((err) => {
+        toast.error(err);
+      });
+  };
+
   return (
     <div>
       <div className="navbar bg-base-100 shadow-sm">
@@ -114,61 +130,66 @@ const Navber = () => {
           </ul>
         </div>
         <div className="navbar-end gap-3">
-          <div className="dropdown dropdown-end z-50">
-            <div
-              tabIndex={0}
-              role="button"
-              className="btn btn-ghost btn-circle avatar"
-            >
-              <div className="w-10 border-2 border-orange-300 rounded-full">
-                <img
-                  alt=""
-                  // src={
-                  //   user?.photoURL ||
-                  //   "https://img.freepik.com/premium-vector/man-avatar-profile-picture-isolated-background-avatar-profile-picture-man_1293239-4855.jpg"
-                  // }
-                />
+          {user ? (
+            <div className="dropdown dropdown-end z-50">
+              <div
+                tabIndex={0}
+                role="button"
+                className="btn btn-ghost btn-circle avatar"
+              >
+                <div className="w-10 border-2 border-orange-300 rounded-full">
+                  <img
+                    alt=""
+                    src={
+                      user?.photoURL ||
+                      "https://img.freepik.com/premium-vector/man-avatar-profile-picture-isolated-background-avatar-profile-picture-man_1293239-4855.jpg"
+                    }
+                  />
+                </div>
               </div>
-            </div>
-            <ul
-              tabIndex="-1"
-              className="menu  menu-sm dropdown-content bg-linear-to-r from-gray-100 to-orange-100 rounded-box z-50 mt-3 w-52 p-2 shadow"
-            >
-              <div className=" pb-3 border-b border-b-gray-200">
-                <li className="text-sm font-bold text-gray-700">
-                  {/* {user.displayName} */}
+              <ul
+                tabIndex="-1"
+                className="menu  menu-sm dropdown-content bg-linear-to-r from-gray-100 to-orange-100 rounded-box z-50 mt-3 w-52 p-2 shadow"
+              >
+                <div className=" pb-3 border-b border-b-gray-200">
+                  <li className="text-sm font-bold text-gray-700">
+                    {user?.displayName}
+                  </li>
+                  <li className="text-xs text-gray-700">{user?.email}</li>
+                </div>
+
+                <li>
+                  <NavLink
+                    className={({ isActive }) =>
+                      isActive
+                        ? "text-md text-orange-500 font-semibold"
+                        : "text-md font-semibold text-gray-800"
+                    }
+                    to={"/"}
+                  >
+                    Dashboard
+                  </NavLink>
                 </li>
-                <li className="text-xs text-gray-700">Sajib rahman</li>
-              </div>
 
-              <li>
-                <NavLink
-                  className={({ isActive }) =>
-                    isActive
-                      ? "text-md text-orange-500 font-semibold"
-                      : "text-md font-semibold text-gray-800"
-                  }
-                  to={"/"}
-                >
-                  Dashboard
-                </NavLink>
-              </li>
-
-              <li>
-                <button className="btn rounded-lg mt-1.5 btn-sm bg-linear-to-r from-orange-400 to-orange-500 text-white py-2.5 font-medium hover:from-orange-500 hover:to-orange-600 hover:shadow-lg hover:-translate-y-0.5 transition-all duration-300 ">
-                  Logout
-                </button>
-              </li>
-            </ul>
-          </div>
-
-          <Link
-            to={"/login"}
-            className="btn btn-sm rounded-lg bg-linear-to-r from-orange-400 to-orange-500 text-white py-2.5 font-medium hover:from-orange-500 hover:to-orange-600 hover:shadow-lg hover:-translate-y-0.5 transition-all duration-300 text-center"
-          >
-            {" "}
-            Login
-          </Link>
+                <li>
+                  <button
+                    onClick={handleLogout}
+                    className="btn rounded-lg mt-1.5 btn-sm bg-linear-to-r from-orange-400 to-orange-500 text-white py-2.5 font-medium hover:from-orange-500 hover:to-orange-600 hover:shadow-lg hover:-translate-y-0.5 transition-all duration-300 "
+                  >
+                    Logout
+                  </button>
+                </li>
+              </ul>
+            </div>
+          ) : (
+            <Link
+              to={"/login"}
+              className="btn btn-sm rounded-lg bg-linear-to-r from-orange-400 to-orange-500 text-white py-2.5 font-medium hover:from-orange-500 hover:to-orange-600 hover:shadow-lg hover:-translate-y-0.5 transition-all duration-300 text-center"
+            >
+              {" "}
+              Login
+            </Link>
+          )}
         </div>
       </div>
     </div>
