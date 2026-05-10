@@ -5,6 +5,7 @@ import { Link, useLocation, useNavigate } from "react-router";
 import useAuth from "../../Hooks/useAuth";
 
 import { toast } from "react-toastify";
+import axios from "axios";
 
 const Resigter = () => {
   const {
@@ -13,16 +14,41 @@ const Resigter = () => {
     formState: { errors },
   } = useForm();
 
-  const { createUserFunc, signInWithGoogleFunc } = useAuth();
+  const { createUserFunc, signInWithGoogleFunc, updateUserProfileFunc } =
+    useAuth();
   const navigate = useNavigate();
   const location = useLocation();
   const from = location.state || "/";
 
   const handleRegister = (data) => {
     console.log(data);
+    const profileImage = data.photo[0];
     createUserFunc(data.email, data.password)
       .then((res) => {
         console.log(res);
+        //store the image in form data
+        const formData = new FormData();
+        formData.append("image", profileImage);
+
+        //send the photo to store and get the url
+        const image_API_URL = `https://api.imgbb.com/1/upload?key=${import.meta.env.VITE_image_host_key}`;
+
+        axios.post(image_API_URL, formData).then((res) => {
+          // console.log("after image upload", res.data.data.url);
+          //update user profile to the firebase
+          const userProfile = {
+            displayName: data.name,
+            photoURL: res.data.data.url,
+          };
+          updateUserProfileFunc(userProfile)
+            .then(() => {
+              // console.log("user profile updated");
+            })
+            .catch((err) => {
+              console.log(err);
+            });
+        });
+
         navigate(from, { replace: true });
         toast.success("Registration Successful.");
       })
@@ -70,11 +96,11 @@ const Resigter = () => {
 
                 <input
                   type="text"
-                  {...register("text", { required: true })}
+                  {...register("name", { required: true })}
                   placeholder="Enter your full name"
                   className="w-full px-4 py-3 rounded-xl border border-gray-300 text-gray-700 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500"
                 />
-                {errors.text?.type === "required" && (
+                {errors.name?.type === "required" && (
                   <p className="text-red-400">Enter Your Full name.</p>
                 )}
               </div>
@@ -96,18 +122,21 @@ const Resigter = () => {
                 )}
               </div>
 
-              {/* PHOTO URL */}
+              {/* PHOTO IMAGE FIELD */}
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-2">
-                  Photo URL
+                  Upload Your Photo
                 </label>
 
                 <input
-                  type="text"
-                  {...register("text")}
-                  placeholder="Enter your photo URL"
+                  type="file"
+                  {...register("photo", { required: true })}
+                  placeholder="Enter your photo."
                   className="w-full px-4 py-3 rounded-xl border border-gray-300 text-gray-700 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500"
                 />
+                {errors.photo?.type === "required" && (
+                  <p className="text-red-400">Photo is required</p>
+                )}
               </div>
 
               {/* PASSWORD */}
