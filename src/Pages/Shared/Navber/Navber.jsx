@@ -122,7 +122,7 @@ const Navber = () => {
                     ? "text-[16px] text-orange-500 font-semibold"
                     : "text-[16px] font-semibold"
                 }
-                to={"/"}
+                to={"/report-issues"}
               >
                 Report Issue
               </NavLink>
