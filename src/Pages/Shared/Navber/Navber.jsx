@@ -165,7 +165,7 @@ const Navber = () => {
                         ? "text-md text-orange-500 font-semibold"
                         : "text-md font-semibold text-gray-800"
                     }
-                    to={"/"}
+                    to={"/dashboard"}
                   >
                     Dashboard
                   </NavLink>

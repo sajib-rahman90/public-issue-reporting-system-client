@@ -2,6 +2,7 @@ import { useForm } from "react-hook-form";
 import useAxiosSecure from "../../Hooks/useAxiosSecure";
 import axios from "axios";
 import useAuth from "../../Hooks/useAuth";
+import { toast } from "react-toastify";
 
 const ReportIssueForm = () => {
   const {
@@ -53,6 +54,7 @@ const ReportIssueForm = () => {
     };
 
     const issueRes = await axiosSecure.post("/issues", issueInfo);
+    toast.success("Added Report in DB succesfulli.");
 
     console.log("after saving issue", issueRes.data);
   };

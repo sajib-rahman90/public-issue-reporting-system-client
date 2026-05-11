@@ -1,11 +1,15 @@
 import { createBrowserRouter } from "react-router";
 import RootLayout from "../Layouts/RootLayout";
 import Home from "../Pages/Home/Home/Home";
-import Allissues from "../Pages/Allissues/Allissues";
+
 import Login from "../Pages/Login/Login";
 import Resigter from "../Pages/Register/Resigter";
 import PrivateRoute from "./PrivateRoute";
 import ReportIssue from "../Pages/ReportIssue/ReportIssue";
+import DashboardLayout from "../Layouts/DashboardLayout";
+import UserReportIssue from "../Pages/Dashboard/Citizen/UserReportIssue";
+import MyIssues from "../Pages/Dashboard/Citizen/MyIssues";
+import Allissues from "../Pages/Home/Home/Allissues/Allissues";
 
 export const router = createBrowserRouter([
   {
@@ -20,7 +24,7 @@ export const router = createBrowserRouter([
         path: "/all-issues",
         element: (
           <PrivateRoute>
-            <Allissues />
+            <Allissues></Allissues>
           </PrivateRoute>
         ),
       },
@@ -41,5 +45,23 @@ export const router = createBrowserRouter([
   {
     path: "/register",
     element: <Resigter />,
+  },
+  {
+    path: "dashboard",
+    element: (
+      <PrivateRoute>
+        <DashboardLayout></DashboardLayout>
+      </PrivateRoute>
+    ),
+    children: [
+      {
+        path: "user-report-issue",
+        element: <UserReportIssue />,
+      },
+      {
+        path: "my-issues",
+        element: <MyIssues />,
+      },
+    ],
   },
 ]);
