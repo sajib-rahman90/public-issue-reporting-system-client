@@ -56,7 +56,7 @@ const AllissuesCard = ({ issue }) => {
 
                 {/* DETAILS BUTTON */}
                 <Link
-                  to={"/issues/${_id}"}
+                  to={`/issues/${issue._id}`}
                   className="px-5 py-2 rounded-xl bg-blue-600 hover:bg-blue-700 transition text-white text-sm font-medium"
                 >
                   View Details

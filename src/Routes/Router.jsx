@@ -10,6 +10,7 @@ import DashboardLayout from "../Layouts/DashboardLayout";
 import UserReportIssue from "../Pages/Dashboard/Citizen/UserReportIssue";
 import MyIssues from "../Pages/Dashboard/Citizen/MyIssues";
 import Allissues from "../Pages/Home/Home/Allissues/Allissues";
+import IssueDetails from "../Pages/Home/Home/IssueDetails/IssueDetails";
 
 export const router = createBrowserRouter([
   {
@@ -33,6 +34,14 @@ export const router = createBrowserRouter([
         element: (
           <PrivateRoute>
             <ReportIssue />
+          </PrivateRoute>
+        ),
+      },
+      {
+        path: "/issues/:id",
+        element: (
+          <PrivateRoute>
+            <IssueDetails />
           </PrivateRoute>
         ),
       },
