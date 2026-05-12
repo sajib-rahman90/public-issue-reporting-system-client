@@ -11,6 +11,7 @@ import UserReportIssue from "../Pages/Dashboard/Citizen/UserReportIssue";
 import MyIssues from "../Pages/Dashboard/Citizen/MyIssues";
 import Allissues from "../Pages/Home/Home/Allissues/Allissues";
 import IssueDetails from "../Pages/Home/Home/IssueDetails/IssueDetails";
+import BoostPaymentSuc from "../Pages/Payment/BoostPaymentSuc";
 
 export const router = createBrowserRouter([
   {
@@ -72,5 +73,9 @@ export const router = createBrowserRouter([
         element: <MyIssues />,
       },
     ],
+  },
+  {
+    path: "/boost-success",
+    element: <BoostPaymentSuc />,
   },
 ]);

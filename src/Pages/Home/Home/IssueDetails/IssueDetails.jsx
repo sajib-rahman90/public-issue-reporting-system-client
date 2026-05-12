@@ -7,6 +7,7 @@ import LoaddingSpinner from "../../../../Components/LoaddingSpinner";
 import useAxiosSecure from "../../../../Hooks/useAxiosSecure";
 import useAuth from "../../../../Hooks/useAuth";
 import Swal from "sweetalert2";
+import { toast } from "react-toastify";
 
 const IssueDetails = () => {
   const { user } = useAuth();
@@ -59,6 +60,22 @@ const IssueDetails = () => {
       } catch (error) {
         console.log(error);
       }
+    }
+  };
+
+  /* ================= BOOST ================= */
+  const handleBoost = async () => {
+    try {
+      const res = await axiosSecure.post(
+        `/issues/${id}/create-checkout-session`,
+        {
+          email: issue?.email,
+          title: issue?.title,
+        },
+      );
+      window.location.href = res.data.url;
+    } catch (err) {
+      toast.error(err.response?.data?.error || "Boost failed");
     }
   };
 
@@ -171,7 +188,10 @@ const IssueDetails = () => {
 
             {/* BOOST */}
             {issue?.priority !== "high" && (
-              <button className="bg-orange-500 hover:bg-orange-600 text-white px-5 py-3 rounded-xl transition">
+              <button
+                onClick={handleBoost}
+                className="bg-orange-500 hover:bg-orange-600 text-white px-5 py-3 rounded-xl transition"
+              >
                 Boost Priority (100tk)
               </button>
             )}
