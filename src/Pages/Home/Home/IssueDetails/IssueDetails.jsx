@@ -11,7 +11,7 @@ import { toast } from "react-toastify";
 
 const IssueDetails = () => {
   const { user } = useAuth();
-  console.log(user);
+  // console.log(user);
   const axiosSecure = useAxiosSecure();
 
   // let [isOpen, setIsOpen] = useState()
@@ -30,7 +30,7 @@ const IssueDetails = () => {
       return result.data;
     },
   });
-  console.log(issue);
+  // console.log(issue);
   const isOwner = user?.email === issue?.reporterEmail;
 
   // delate functions
@@ -63,7 +63,7 @@ const IssueDetails = () => {
     }
   };
 
-  /* ================= BOOST ================= */
+  // Boost
   const handleBoost = async () => {
     try {
       const res = await axiosSecure.post(
