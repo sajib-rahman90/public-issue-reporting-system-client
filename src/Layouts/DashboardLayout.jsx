@@ -1,8 +1,10 @@
 // import { Outlet } from "react-router-dom";
 
 import { Link, NavLink, Outlet } from "react-router";
+import useRole from "../Hooks/useRole";
 
 const DashboardLayout = () => {
+  const [role] = useRole();
   return (
     <div className="drawer lg:drawer-open">
       <input id="my-drawer-4" type="checkbox" className="drawer-toggle" />
@@ -72,28 +74,45 @@ const DashboardLayout = () => {
             </li>
 
             {/* our dashboard link */}
-            <li>
-              <NavLink
-                to={"/dashboard/user-report-issue"}
-                className="is-drawer-close:tooltip is-drawer-close:tooltip-right"
-                data-tip="User Report Issue"
-              >
-                👤
-                <span className="is-drawer-close:hidden">
-                  User Report Issue
-                </span>
-              </NavLink>
-            </li>
-            <li>
-              <NavLink
-                to={"/dashboard/my-issues"}
-                className="is-drawer-close:tooltip is-drawer-close:tooltip-right"
-                data-tip="My Issues"
-              >
-                👤
-                <span className="is-drawer-close:hidden">My Issues</span>
-              </NavLink>
-            </li>
+            {role === "citizen" && (
+              <>
+                <li>
+                  <NavLink
+                    to={"/dashboard/citizen-stats"}
+                    className="is-drawer-close:tooltip is-drawer-close:tooltip-right"
+                    data-tip="citizen-stats"
+                  >
+                    📊
+                    <span className="is-drawer-close:hidden">
+                      Citizen stats
+                    </span>
+                  </NavLink>
+                </li>
+
+                <li>
+                  <NavLink
+                    to={"/dashboard/user-report-issue"}
+                    className="is-drawer-close:tooltip is-drawer-close:tooltip-right"
+                    data-tip="User Report Issue"
+                  >
+                    👤
+                    <span className="is-drawer-close:hidden">
+                      Citizen Report Issue
+                    </span>
+                  </NavLink>
+                </li>
+                <li>
+                  <NavLink
+                    to={"/dashboard/my-issues"}
+                    className="is-drawer-close:tooltip is-drawer-close:tooltip-right"
+                    data-tip="My Issues"
+                  >
+                    👤
+                    <span className="is-drawer-close:hidden">My Issues</span>
+                  </NavLink>
+                </li>
+              </>
+            )}
 
             {/* List item */}
             <li>

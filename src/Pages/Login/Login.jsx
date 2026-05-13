@@ -45,6 +45,9 @@ const Login = () => {
           email: res.user.email,
           displayName: res.user.displayName,
           photoURL: res.user.photoURL,
+          isBlocked: false,
+          isPremium: false,
+          subscriptionDate: null,
         };
 
         axiosSecure.post("/users", userInfo).then((res) => {

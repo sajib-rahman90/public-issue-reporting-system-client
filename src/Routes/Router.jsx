@@ -12,6 +12,7 @@ import MyIssues from "../Pages/Dashboard/Citizen/MyIssues";
 import Allissues from "../Pages/Home/Home/Allissues/Allissues";
 import IssueDetails from "../Pages/Home/Home/IssueDetails/IssueDetails";
 import BoostPaymentSuc from "../Pages/Payment/BoostPaymentSuc";
+import CitizenDashboard from "../Pages/Dashboard/Citizen/CitizenDashboard";
 
 export const router = createBrowserRouter([
   {
@@ -71,6 +72,10 @@ export const router = createBrowserRouter([
       {
         path: "my-issues",
         element: <MyIssues />,
+      },
+      {
+        path: "citizen-stats",
+        element: <CitizenDashboard />,
       },
     ],
   },

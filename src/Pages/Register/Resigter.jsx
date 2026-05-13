@@ -44,6 +44,9 @@ const Resigter = () => {
             email: data.email,
             displayName: data.name,
             photoURL: photoURL,
+            isBlocked: false,
+            isPremium: false,
+            subscriptionDate: null,
           };
           axiosSecure.post("/users", userInfo).then((res) => {
             if (res.data.insertedId) {
@@ -84,6 +87,9 @@ const Resigter = () => {
           email: res.user.email,
           displayName: res.user.displayName,
           photoURL: res.user.photoURL,
+          isBlocked: false,
+          isPremium: false,
+          subscriptionDate: null,
         };
 
         axiosSecure.post("/users", userInfo).then((res) => {
