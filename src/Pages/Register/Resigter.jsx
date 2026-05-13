@@ -5,6 +5,7 @@ import useAuth from "../../Hooks/useAuth";
 
 import { toast } from "react-toastify";
 import axios from "axios";
+import useAxiosSecure from "../../Hooks/useAxiosSecure";
 
 const Resigter = () => {
   const {
@@ -13,6 +14,8 @@ const Resigter = () => {
     formState: { errors },
   } = useForm();
 
+  const axiosSecure = useAxiosSecure();
+
   const { createUserFunc, signInWithGoogleFunc, updateUserProfileFunc } =
     useAuth();
   const navigate = useNavigate();
@@ -20,11 +23,11 @@ const Resigter = () => {
   const from = location.state || "/";
 
   const handleRegister = (data) => {
-    console.log(data);
+    // console.log(data);
     const profileImage = data.photo[0];
     createUserFunc(data.email, data.password)
-      .then((res) => {
-        console.log(res);
+      .then(() => {
+        // console.log(res);
         //store the image in form data
         const formData = new FormData();
         formData.append("image", profileImage);
@@ -34,10 +37,24 @@ const Resigter = () => {
 
         axios.post(image_API_URL, formData).then((res) => {
           // console.log("after image upload", res.data.data.url);
+          const photoURL = res.data.data.url;
+
+          // create user in the database
+          const userInfo = {
+            email: data.email,
+            displayName: data.name,
+            photoURL: photoURL,
+          };
+          axiosSecure.post("/users", userInfo).then((res) => {
+            if (res.data.insertedId) {
+              console.log("user created in the database");
+            }
+          });
+
           //update user profile to the firebase
           const userProfile = {
             displayName: data.name,
-            photoURL: res.data.data.url,
+            photoURL: photoURL,
           };
           updateUserProfileFunc(userProfile)
             .then(() => {
@@ -61,8 +78,18 @@ const Resigter = () => {
     signInWithGoogleFunc()
       .then((res) => {
         console.log(res);
-        navigate(from, { replace: true });
         toast.success("Google Sign in Successfull. ");
+
+        const userInfo = {
+          email: res.user.email,
+          displayName: res.user.displayName,
+          photoURL: res.user.photoURL,
+        };
+
+        axiosSecure.post("/users", userInfo).then((res) => {
+          console.log("user data has been stored", res.data);
+          navigate(from, { replace: true });
+        });
       })
       .catch((err) => {
         console.log(err);
