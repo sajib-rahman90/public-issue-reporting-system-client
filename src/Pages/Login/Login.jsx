@@ -43,8 +43,8 @@ const Login = () => {
 
         const userInfo = {
           email: res.user.email,
-          displayName: res.user.displayName,
-          photoURL: res.user.photoURL,
+          name: res.user.displayName,
+          photo: res.user.photoURL,
           isBlocked: false,
           isPremium: false,
           subscriptionDate: null,

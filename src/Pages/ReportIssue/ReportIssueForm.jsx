@@ -4,6 +4,9 @@ import axios from "axios";
 import useAuth from "../../Hooks/useAuth";
 import { toast } from "react-toastify";
 
+import { useNavigate } from "react-router";
+import { useEffect, useState } from "react";
+
 const ReportIssueForm = () => {
   const {
     register,
@@ -14,8 +17,30 @@ const ReportIssueForm = () => {
   const { user } = useAuth();
 
   const axiosSecure = useAxiosSecure();
+  const navigate = useNavigate();
+  const [userInfo, setUserInfo] = useState(null);
+  const [reportedCount, setReportedCount] = useState(0);
+
+  //  ADD THIS (USER INFO + COUNT FETCH)
+  useEffect(() => {
+    if (user?.email) {
+      axiosSecure.get(`/users/${user.email}`).then((res) => {
+        setUserInfo(res.data);
+      });
+
+      axiosSecure.get(`/my-issues-count/${user.email}`).then((res) => {
+        setReportedCount(res.data.count);
+      });
+    }
+  }, [user, axiosSecure]);
 
   const handleReportIssue = async (data) => {
+    // ADD THIS (LIMIT CHECK)
+    if (!userInfo?.isPremium && reportedCount >= 3) {
+      toast.error("Free users can report maximum 3 issues");
+      navigate("/dashboard/profile");
+      return;
+    }
     console.log(data);
     const issueImage = data.photo[0];
 
@@ -53,10 +78,27 @@ const ReportIssueForm = () => {
       createdAt: new Date(),
     };
 
-    const issueRes = await axiosSecure.post("/issues", issueInfo);
-    toast.success("Added Report in DB succesfulli.");
+    // const issueRes = await axiosSecure.post("/issues", issueInfo);
+    // toast.success("Added Report in DB succesfully.");
 
-    console.log("after saving issue", issueRes.data);
+    // console.log("after saving issue", issueRes.data);
+
+    const issueRes = await axiosSecure.post("/issues", issueInfo);
+    //  ADD THIS (TRACKING CREATE + NAVIGATE)
+    if (issueRes.data.insertedId) {
+      const trackingInfo = {
+        issueId: issueRes.data.insertedId,
+        status: "Pending",
+        message: "Issue reported successfully",
+        updatedBy: "Citizen",
+        email: user.email,
+        time: new Date(),
+      };
+
+      await axiosSecure.post("/issue-tracking", trackingInfo);
+      toast.success("Issue reported successfully");
+      navigate("/dashboard/my-issues");
+    }
   };
   return (
     <div>
@@ -202,13 +244,24 @@ const ReportIssueForm = () => {
                 </div>
 
                 {/* BUTTON */}
-                <div className="pt-2">
+                <div className="pt-2  ">
                   <button
                     type="submit"
+                    disabled={!userInfo?.isPremium && reportedCount >= 3}
                     className="w-full sm:w-auto px-8 py-3 rounded-xl bg-blue-600 hover:bg-blue-700 transition text-white font-medium shadow-md"
                   >
                     Submit Issue
                   </button>
+
+                  {!userInfo?.isPremium && reportedCount >= 3 && (
+                    <button
+                      type="button"
+                      onClick={() => navigate("/dashboard/citizen-profile")}
+                      className="mt-4 w-full sm:w-auto px-8 py-3 rounded-xl bg-amber-500 hover:bg-amber-600 text-white font-medium"
+                    >
+                      Subscribe Now
+                    </button>
+                  )}
                 </div>
               </form>
             </div>

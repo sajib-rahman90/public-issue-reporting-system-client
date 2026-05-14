@@ -42,8 +42,8 @@ const Resigter = () => {
           // create user in the database
           const userInfo = {
             email: data.email,
-            displayName: data.name,
-            photoURL: photoURL,
+            name: data.name,
+            photo: photoURL,
             isBlocked: false,
             isPremium: false,
             subscriptionDate: null,
@@ -85,8 +85,8 @@ const Resigter = () => {
 
         const userInfo = {
           email: res.user.email,
-          displayName: res.user.displayName,
-          photoURL: res.user.photoURL,
+          name: res.user.displayName,
+          photo: res.user.photoURL,
           isBlocked: false,
           isPremium: false,
           subscriptionDate: null,

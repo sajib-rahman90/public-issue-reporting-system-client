@@ -2,6 +2,7 @@
 
 import { Link, NavLink, Outlet } from "react-router";
 import useRole from "../Hooks/useRole";
+import { ImProfile } from "react-icons/im";
 
 const DashboardLayout = () => {
   const [role] = useRole();
@@ -101,6 +102,7 @@ const DashboardLayout = () => {
                     </span>
                   </NavLink>
                 </li>
+
                 <li>
                   <NavLink
                     to={"/dashboard/my-issues"}
@@ -109,6 +111,17 @@ const DashboardLayout = () => {
                   >
                     👤
                     <span className="is-drawer-close:hidden">My Issues</span>
+                  </NavLink>
+                </li>
+
+                <li>
+                  <NavLink
+                    to={"/dashboard/citizen-profile"}
+                    className="is-drawer-close:tooltip is-drawer-close:tooltip-right"
+                    data-tip="My Profile"
+                  >
+                    <ImProfile />
+                    <span className="is-drawer-close:hidden">My Profile</span>
                   </NavLink>
                 </li>
               </>
