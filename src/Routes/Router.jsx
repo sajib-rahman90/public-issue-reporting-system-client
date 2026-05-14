@@ -14,6 +14,7 @@ import IssueDetails from "../Pages/Home/Home/IssueDetails/IssueDetails";
 import BoostPaymentSuc from "../Pages/Payment/BoostPaymentSuc";
 import CitizenDashboard from "../Pages/Dashboard/Citizen/CitizenDashboard";
 import CitizenProfile from "../Pages/Dashboard/Citizen/CitizenProfile";
+import AdminAllissues from "../Pages/Dashboard/Admin/AdminAllissues";
 
 export const router = createBrowserRouter([
   {
@@ -81,6 +82,10 @@ export const router = createBrowserRouter([
       {
         path: "citizen-profile",
         element: <CitizenProfile />,
+      },
+      {
+        path: "Admin-all-issues",
+        element: <AdminAllissues />,
       },
     ],
   },

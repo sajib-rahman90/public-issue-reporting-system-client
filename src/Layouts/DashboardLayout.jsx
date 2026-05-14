@@ -3,6 +3,7 @@
 import { Link, NavLink, Outlet } from "react-router";
 import useRole from "../Hooks/useRole";
 import { ImProfile } from "react-icons/im";
+import { RiAdminFill } from "react-icons/ri";
 
 const DashboardLayout = () => {
   const [role] = useRole();
@@ -122,6 +123,21 @@ const DashboardLayout = () => {
                   >
                     <ImProfile />
                     <span className="is-drawer-close:hidden">My Profile</span>
+                  </NavLink>
+                </li>
+              </>
+            )}
+
+            {role === "admin" && (
+              <>
+                <li>
+                  <NavLink
+                    to={"/dashboard/Admin-all-issues"}
+                    className="is-drawer-close:tooltip is-drawer-close:tooltip-right"
+                    data-tip="All Issues"
+                  >
+                    <RiAdminFill />
+                    <span className="is-drawer-close:hidden">All Issues</span>
                   </NavLink>
                 </li>
               </>

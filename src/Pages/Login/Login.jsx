@@ -37,7 +37,7 @@ const Login = () => {
   const handleGoogle = () => {
     signInWithGoogleFunc()
       .then((res) => {
-        console.log(res);
+        // console.log(res);
         // navigate(from, { replace: true });
         toast.success("Google Sign in Successfull. ");
 
@@ -51,7 +51,7 @@ const Login = () => {
         };
 
         axiosSecure.post("/users", userInfo).then((res) => {
-          console.log("user data has been stored", res.data);
+          // console.log("user data has been stored", res.data);
           navigate(from, { replace: true });
         });
       })
