@@ -132,12 +132,24 @@ const DashboardLayout = () => {
               <>
                 <li>
                   <NavLink
-                    to={"/dashboard/Admin-all-issues"}
+                    to={"/dashboard/admin-all-issues"}
                     className="is-drawer-close:tooltip is-drawer-close:tooltip-right"
                     data-tip="All Issues"
                   >
                     <RiAdminFill />
                     <span className="is-drawer-close:hidden">All Issues</span>
+                  </NavLink>
+                </li>
+                <li>
+                  <NavLink
+                    to={"/dashboard/admin-manage-users"}
+                    className="is-drawer-close:tooltip is-drawer-close:tooltip-right"
+                    data-tip="Admin Manage Users"
+                  >
+                    <RiAdminFill />
+                    <span className="is-drawer-close:hidden">
+                      Admin Manage Users
+                    </span>
                   </NavLink>
                 </li>
               </>

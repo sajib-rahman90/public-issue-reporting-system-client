@@ -15,6 +15,7 @@ import BoostPaymentSuc from "../Pages/Payment/BoostPaymentSuc";
 import CitizenDashboard from "../Pages/Dashboard/Citizen/CitizenDashboard";
 import CitizenProfile from "../Pages/Dashboard/Citizen/CitizenProfile";
 import AdminAllissues from "../Pages/Dashboard/Admin/AdminAllissues";
+import AdminManageUsers from "../Pages/Dashboard/Admin/AdminManageUsers";
 
 export const router = createBrowserRouter([
   {
@@ -84,8 +85,12 @@ export const router = createBrowserRouter([
         element: <CitizenProfile />,
       },
       {
-        path: "Admin-all-issues",
+        path: "admin-all-issues",
         element: <AdminAllissues />,
+      },
+      {
+        path: "admin-manage-users",
+        element: <AdminManageUsers />,
       },
     ],
   },

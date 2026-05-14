@@ -138,7 +138,7 @@ const IssueDetails = () => {
 
               <div className="flex items-center gap-4">
                 <img
-                  src={issue?.image}
+                  src={user?.photoURL}
                   alt=""
                   referrerPolicy="no-referrer"
                   className="w-14 h-14 rounded-full object-cover"
@@ -162,15 +162,19 @@ const IssueDetails = () => {
                 Assigned Staff
               </h3>
 
-              {issue?.assignedStaff ? (
+              {issue?.assignedStaffName || issue?.assignedStaffEmail ? (
                 <div>
-                  <h4 className="font-medium text-gray-800">
-                    {issue?.assignedStaff?.name}
-                  </h4>
+                  {issue?.assignedStaffName && (
+                    <h4 className="font-medium text-gray-800">
+                      {issue.assignedStaffName}
+                    </h4>
+                  )}
 
-                  <p className="text-sm text-gray-500 mt-1">
-                    {issue?.assignedStaff?.email}
-                  </p>
+                  {issue?.assignedStaffEmail && (
+                    <p className="text-sm text-gray-500 mt-1">
+                      {issue.assignedStaffEmail}
+                    </p>
+                  )}
                 </div>
               ) : (
                 <p className="text-gray-500 text-sm">No staff assigned yet.</p>
