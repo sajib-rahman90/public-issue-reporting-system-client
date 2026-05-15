@@ -16,6 +16,11 @@ import CitizenDashboard from "../Pages/Dashboard/Citizen/CitizenDashboard";
 import CitizenProfile from "../Pages/Dashboard/Citizen/CitizenProfile";
 import AdminAllissues from "../Pages/Dashboard/Admin/AdminAllissues";
 import AdminManageUsers from "../Pages/Dashboard/Admin/AdminManageUsers";
+import AdminManageStaff from "../Pages/Dashboard/Admin/AdminManageStaff";
+import AdminProfile from "../Pages/Dashboard/Admin/AdminProfile";
+import StaffProfile from "../Pages/Dashboard/Staff/StaffProfile";
+import StaffAssignedIssues from "../Pages/Dashboard/Staff/StaffAssignedIssues";
+import StaffDashboard from "../Pages/Dashboard/Staff/StaffDashboard";
 
 export const router = createBrowserRouter([
   {
@@ -91,6 +96,26 @@ export const router = createBrowserRouter([
       {
         path: "admin-manage-users",
         element: <AdminManageUsers />,
+      },
+      {
+        path: "admin-manage-staff",
+        element: <AdminManageStaff />,
+      },
+      {
+        path: "admin-profile",
+        element: <AdminProfile />,
+      },
+      {
+        path: "staff-dashboard",
+        element: <StaffDashboard />,
+      },
+      {
+        path: "staff-profile",
+        element: <StaffProfile />,
+      },
+      {
+        path: "staff-assigned-issues",
+        element: <StaffAssignedIssues />,
       },
     ],
   },

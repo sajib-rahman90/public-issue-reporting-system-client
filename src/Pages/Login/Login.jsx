@@ -21,10 +21,10 @@ const Login = () => {
   if (user) return <Navigate to={from} replace={true} />;
 
   const handleLogin = (data) => {
-    console.log(data);
+    // console.log(data);
     logInUserFunc(data.email, data.password)
       .then((res) => {
-        console.log(res);
+        // console.log(res);
         navigate(from, { replace: true });
         toast.success("Login Successfull.");
       })

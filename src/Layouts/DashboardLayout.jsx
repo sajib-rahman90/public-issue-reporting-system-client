@@ -1,5 +1,3 @@
-// import { Outlet } from "react-router-dom";
-
 import { Link, NavLink, Outlet } from "react-router";
 import useRole from "../Hooks/useRole";
 import { ImProfile } from "react-icons/im";
@@ -140,6 +138,7 @@ const DashboardLayout = () => {
                     <span className="is-drawer-close:hidden">All Issues</span>
                   </NavLink>
                 </li>
+
                 <li>
                   <NavLink
                     to={"/dashboard/admin-manage-users"}
@@ -147,8 +146,70 @@ const DashboardLayout = () => {
                     data-tip="Admin Manage Users"
                   >
                     <RiAdminFill />
+                    <span className="is-drawer-close:hidden">Manage Users</span>
+                  </NavLink>
+                </li>
+
+                <li>
+                  <NavLink
+                    to={"/dashboard/admin-manage-staff"}
+                    className="is-drawer-close:tooltip is-drawer-close:tooltip-right"
+                    data-tip="Admin Manage Staff"
+                  >
+                    <RiAdminFill />
+                    <span className="is-drawer-close:hidden">Manage Staff</span>
+                  </NavLink>
+                </li>
+
+                <li>
+                  <NavLink
+                    to={"/dashboard/admin-profile"}
+                    className="is-drawer-close:tooltip is-drawer-close:tooltip-right"
+                    data-tip="Admin Profile"
+                  >
+                    <RiAdminFill />
                     <span className="is-drawer-close:hidden">
-                      Admin Manage Users
+                      Admin Profile
+                    </span>
+                  </NavLink>
+                </li>
+              </>
+            )}
+            {role === "staff" && (
+              <>
+                <li>
+                  <NavLink
+                    to={"/dashboard/staff-dashboard"}
+                    className="is-drawer-close:tooltip is-drawer-close:tooltip-right"
+                    data-tip="Dashboard"
+                  >
+                    <RiAdminFill />
+                    <span className="is-drawer-close:hidden">Dashboard</span>
+                  </NavLink>
+                </li>
+
+                <li>
+                  <NavLink
+                    to={"/dashboard/staff-assigned-issues"}
+                    className="is-drawer-close:tooltip is-drawer-close:tooltip-right"
+                    data-tip="Assigned Issued"
+                  >
+                    <RiAdminFill />
+                    <span className="is-drawer-close:hidden">
+                      Assigned Issued
+                    </span>
+                  </NavLink>
+                </li>
+
+                <li>
+                  <NavLink
+                    to={"/dashboard/staff-profile"}
+                    className="is-drawer-close:tooltip is-drawer-close:tooltip-right"
+                    data-tip="Staff Profile"
+                  >
+                    <RiAdminFill />
+                    <span className="is-drawer-close:hidden">
+                      Staff Profile
                     </span>
                   </NavLink>
                 </li>

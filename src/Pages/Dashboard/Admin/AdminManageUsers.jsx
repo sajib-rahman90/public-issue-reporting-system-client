@@ -8,7 +8,6 @@ const AdminManageUsers = () => {
   const axiosSecure = useAxiosSecure();
   const queryClient = useQueryClient();
 
-  // GET USERS
   const { data: users = [], isLoading } = useQuery({
     queryKey: ["users"],
     queryFn: async () => {
@@ -17,19 +16,16 @@ const AdminManageUsers = () => {
     },
   });
 
-  // BLOCK -- UNBLOCK
   const blockMutation = useMutation({
     mutationFn: async (id) => {
       return axiosSecure.patch(`/admin/users/block/${id}`);
     },
-
     onSuccess: (res) => {
       if (res.data.isBlocked) {
         toast.success("User blocked");
       } else {
         toast.success("User unblocked");
       }
-
       queryClient.invalidateQueries({
         queryKey: ["users"],
       });
@@ -40,7 +36,6 @@ const AdminManageUsers = () => {
     },
   });
 
-  // HANDLE BLOCK
   const handleBlock = (user) => {
     Swal.fire({
       title: user.isBlocked ? "Unblock User?" : "Block User?",
