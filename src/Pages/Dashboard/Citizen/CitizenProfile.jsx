@@ -57,25 +57,6 @@ const CitizenProfile = () => {
     }
   };
 
-  // const handleSubscribe = async () => {
-  //   // fake payment success
-
-  //   try {
-  //     const res = await axiosSecure.patch(`/users/premium/${user.email}`);
-
-  //     if (res.data.modifiedCount > 0) {
-  //       toast.success("You are now Premium User");
-
-  //       setUserInfo({
-  //         ...userInfo,
-  //         isPremium: true,
-  //       });
-  //     }
-  //   } catch (error) {
-  //     console.log(error);
-  //   }
-  // };
-
   const handleSubscribe = async () => {
     try {
       const res = await axiosSecure.post("/create-payment-session", {

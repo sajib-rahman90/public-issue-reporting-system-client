@@ -1,29 +1,27 @@
-import { Link, useNavigate, useParams } from "react-router";
+import { useNavigate, useParams } from "react-router";
 import { FaMapMarkerAlt, FaArrowUp, FaEdit, FaTrash } from "react-icons/fa";
-
-import { useQuery } from "@tanstack/react-query";
-
+import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import LoaddingSpinner from "../../../../Components/LoaddingSpinner";
 import useAxiosSecure from "../../../../Hooks/useAxiosSecure";
 import useAuth from "../../../../Hooks/useAuth";
 import Swal from "sweetalert2";
 import { toast } from "react-toastify";
+import { useState } from "react";
+import { useForm } from "react-hook-form";
 
 const IssueDetails = () => {
   const { user } = useAuth();
-  console.log(user);
+  // console.log(user);
   const axiosSecure = useAxiosSecure();
-
-  // let [isOpen, setIsOpen] = useState()
 
   const { id } = useParams();
   const navigate = useNavigate();
+  // ===== UPDATE MODAL STATE =====
+  const [showModal, setShowModal] = useState(false);
+  const queryClient = useQueryClient();
+  const { register, handleSubmit, reset } = useForm();
 
-  const {
-    data: issue = {},
-    isLoading,
-    refetch,
-  } = useQuery({
+  const { data: issue = {}, isLoading } = useQuery({
     queryKey: ["issue", id],
     queryFn: async () => {
       const result = await axiosSecure.get(`/issues/${id}`);
@@ -32,6 +30,30 @@ const IssueDetails = () => {
   });
   // console.log(issue);
   const isOwner = user?.email === issue?.reporterEmail;
+
+  // ===== UPDATE MUTATION =====
+
+  const updateMutation = useMutation({
+    mutationFn: async (updatedData) => {
+      const res = await axiosSecure.patch(`/issues/update/${id}`, updatedData);
+      return res.data;
+    },
+
+    onSuccess: () => {
+      queryClient.invalidateQueries({
+        queryKey: ["issue", id],
+      });
+
+      queryClient.invalidateQueries({
+        queryKey: ["issues"],
+      });
+      toast.success("Issue updated successfully");
+      setShowModal(false);
+    },
+    onError: (error) => {
+      toast.error(error?.response?.data?.message || "Update failed");
+    },
+  });
 
   // delate functions
   const handleDelete = async () => {
@@ -63,6 +85,17 @@ const IssueDetails = () => {
     }
   };
 
+  // ===== UPDATE HANDLER =====
+
+  const handleUpdate = (data) => {
+    updateMutation.mutate({
+      title: data.title,
+      category: data.category,
+      description: data.description,
+      location: data.location,
+    });
+  };
+
   // Boost
   const handleBoost = async () => {
     try {
@@ -88,7 +121,7 @@ const IssueDetails = () => {
         <img
           src={issue?.image}
           alt={issue?.title}
-          className="w-full h-[250px] md:h-[400px] object-cover"
+          className="w-full h-62.5 md:h-100 object-cover"
         />
 
         {/* CONTENT */}
@@ -131,32 +164,6 @@ const IssueDetails = () => {
 
           {/* INFO SECTION */}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-5 mt-8">
-            {/* REPORTER */}
-            <div className="bg-gray-50 rounded-2xl p-5 border border-gray-200">
-              <h3 className="text-lg font-semibold text-gray-800 mb-4">
-                Reported By
-              </h3>
-
-              <div className="flex items-center gap-4">
-                <img
-                  src={issue?.image}
-                  alt=""
-                  referrerPolicy="no-referrer"
-                  className="w-14 h-14 rounded-full object-cover"
-                />
-
-                <div>
-                  <h4 className="font-medium text-gray-800">
-                    {issue?.reporterName}
-                  </h4>
-
-                  <p className="text-sm text-gray-500">
-                    {issue?.reporterEmail}
-                  </p>
-                </div>
-              </div>
-            </div>
-
             {/* STAFF */}
             <div className="bg-gray-50 rounded-2xl p-5 border border-gray-200">
               <h3 className="text-lg font-semibold text-gray-800 mb-4">
@@ -203,13 +210,21 @@ const IssueDetails = () => {
 
             {/* EDIT */}
             {isOwner && issue?.status === "Pending" && (
-              <Link
-                to={`/update-issue/${issue?._id}`}
+              <button
+                onClick={() => {
+                  reset({
+                    title: issue?.title,
+                    category: issue?.category,
+                    description: issue?.description,
+                    location: issue?.location,
+                  });
+                  setShowModal(true);
+                }}
                 className="flex items-center gap-2 bg-blue-600 hover:bg-blue-700 text-white px-5 py-3 rounded-xl transition"
               >
                 <FaEdit />
                 Edit
-              </Link>
+              </button>
             )}
 
             {/* DELETE */}
@@ -240,6 +255,71 @@ const IssueDetails = () => {
               ))}
             </div>
           </div>
+
+          {/* ===== UPDATE MODAL ===== */}
+
+          {showModal && (
+            <div className="fixed inset-0 bg-black/50 flex justify-center items-center z-50">
+              <div className="bg-white w-[95%] md:w-150 rounded-2xl p-6">
+                <h2 className="text-2xl font-bold mb-5">Update Issue</h2>
+
+                <form
+                  onSubmit={handleSubmit(handleUpdate)}
+                  className="space-y-4"
+                >
+                  <input
+                    {...register("title")}
+                    placeholder="Title"
+                    className="w-full border p-3 rounded-xl"
+                  />
+
+                  <select
+                    {...register("category")}
+                    className="w-full border p-3 rounded-xl"
+                  >
+                    <option value="Road Damage">Road Damage</option>
+
+                    <option value="Broken Streelight">Broken Streelight</option>
+
+                    <option value="Water Leakage">Water Leakage</option>
+
+                    <option value="Garbage Overflow">Garbage Overflow</option>
+                  </select>
+
+                  <input
+                    {...register("location")}
+                    placeholder="Location"
+                    className="w-full border p-3 rounded-xl"
+                  />
+
+                  <textarea
+                    {...register("description")}
+                    placeholder="Description"
+                    rows={4}
+                    className="w-full border p-3 rounded-xl"
+                  />
+
+                  <div className="flex justify-end gap-3">
+                    <button
+                      type="button"
+                      onClick={() => setShowModal(false)}
+                      className="px-5 py-2 bg-gray-300 rounded-xl"
+                    >
+                      Cancel
+                    </button>
+
+                    <button
+                      type="submit"
+                      disabled={updateMutation.isPending}
+                      className="px-5 py-2 bg-blue-600 text-white rounded-xl"
+                    >
+                      {updateMutation.isPending ? "Updating..." : "Update"}
+                    </button>
+                  </div>
+                </form>
+              </div>
+            </div>
+          )}
         </div>
       </div>
     </div>

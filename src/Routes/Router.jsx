@@ -22,11 +22,13 @@ import StaffProfile from "../Pages/Dashboard/Staff/StaffProfile";
 import StaffAssignedIssues from "../Pages/Dashboard/Staff/StaffAssignedIssues";
 import StaffDashboard from "../Pages/Dashboard/Staff/StaffDashboard";
 import PremiumPaymentSuc from "../Pages/Payment/PremiumPaymentSuc";
+import NotFound from "../Components/NotFound";
 
 export const router = createBrowserRouter([
   {
     path: "/",
     element: <RootLayout />,
+    errorElement: <NotFound />,
     children: [
       {
         index: true,
@@ -34,11 +36,7 @@ export const router = createBrowserRouter([
       },
       {
         path: "/all-issues",
-        element: (
-          <PrivateRoute>
-            <Allissues></Allissues>
-          </PrivateRoute>
-        ),
+        element: <Allissues></Allissues>,
       },
       {
         path: "/report-issues",

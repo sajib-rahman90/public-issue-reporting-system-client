@@ -7,32 +7,24 @@ import { Link } from "react-router";
 
 const MyIssues = () => {
   const { user, loading } = useAuth();
-
   const axiosSecure = useAxiosSecure();
-
   const queryClient = useQueryClient();
-
   const [selectedIssue, setSelectedIssue] = useState(null);
 
   // Load issue
   const { data: issues = [], isLoading } = useQuery({
     queryKey: ["myIssues", user?.email],
-
     enabled: !loading && !!user?.email,
-
     queryFn: async () => {
       const res = await axiosSecure.get(`/my-issues?email=${user.email}`);
-
       return res.data;
     },
   });
 
   // DELETE MUTATION
-
   const deleteMutation = useMutation({
     mutationFn: async (id) => {
       const res = await axiosSecure.delete(`/issues/${id}`);
-
       return res.data;
     },
 
@@ -95,27 +87,19 @@ const MyIssues = () => {
   // EDIT MODAL
   const handleEditModal = (issue) => {
     setSelectedIssue(issue);
-
     document.getElementById("update_modal").showModal();
   };
 
   // UPDATE ISSUE
   const handleUpdateIssue = (e) => {
     e.preventDefault();
-
     const form = e.target;
-
     const updatedIssue = {
       _id: selectedIssue._id,
-
       title: form.title.value,
-
       category: form.category.value,
-
       location: form.location.value,
-
       image: form.image.value,
-
       description: form.description.value,
     };
 
