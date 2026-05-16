@@ -76,6 +76,23 @@ const CitizenProfile = () => {
   //   }
   // };
 
+  const handleSubscribe = async () => {
+    try {
+      const res = await axiosSecure.post("/create-payment-session", {
+        email: user.email,
+        name: userInfo.name,
+        price: 1000,
+      });
+
+      if (res.data?.url) {
+        window.location.href = res.data.url;
+      }
+    } catch (error) {
+      console.log(error);
+      toast.error("Payment session failed");
+    }
+  };
+
   if (loading) {
     return <LoaddingSpinner />;
   }
@@ -118,7 +135,7 @@ const CitizenProfile = () => {
 
             {!userInfo?.isPremium && (
               <button
-                // onClick={handleSubscribe}
+                onClick={handleSubscribe}
                 className="bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-xl"
               >
                 Subscribe for 1000tk

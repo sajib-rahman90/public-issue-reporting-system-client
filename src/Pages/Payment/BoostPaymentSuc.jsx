@@ -4,9 +4,7 @@ import { useEffect } from "react";
 
 const BoostPaymentSuc = () => {
   const [searchParams] = useSearchParams();
-
   const sessionId = searchParams.get("session_id");
-
   const axiosSecure = useAxiosSecure();
 
   useEffect(() => {
@@ -31,7 +29,7 @@ const BoostPaymentSuc = () => {
     <div className="min-h-screen flex items-center justify-center">
       <div className="bg-white shadow-lg rounded-3xl p-10 text-center">
         <h1 className="text-3xl font-bold text-green-600">
-          Issue Boosted Successfully
+          Issue Boosted payment Successfull.
         </h1>
 
         <p className="text-gray-500 mt-3">

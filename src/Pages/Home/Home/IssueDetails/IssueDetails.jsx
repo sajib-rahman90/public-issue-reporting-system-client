@@ -11,7 +11,7 @@ import { toast } from "react-toastify";
 
 const IssueDetails = () => {
   const { user } = useAuth();
-  // console.log(user);
+  console.log(user);
   const axiosSecure = useAxiosSecure();
 
   // let [isOpen, setIsOpen] = useState()
@@ -69,8 +69,9 @@ const IssueDetails = () => {
       const res = await axiosSecure.post(
         `/issues/${id}/create-checkout-session`,
         {
-          email: issue?.email,
+          email: user?.email,
           title: issue?.title,
+          userName: user?.displayName,
         },
       );
       window.location.href = res.data.url;
@@ -138,7 +139,7 @@ const IssueDetails = () => {
 
               <div className="flex items-center gap-4">
                 <img
-                  src={user?.photoURL}
+                  src={issue?.image}
                   alt=""
                   referrerPolicy="no-referrer"
                   className="w-14 h-14 rounded-full object-cover"

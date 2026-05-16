@@ -21,6 +21,7 @@ import AdminProfile from "../Pages/Dashboard/Admin/AdminProfile";
 import StaffProfile from "../Pages/Dashboard/Staff/StaffProfile";
 import StaffAssignedIssues from "../Pages/Dashboard/Staff/StaffAssignedIssues";
 import StaffDashboard from "../Pages/Dashboard/Staff/StaffDashboard";
+import PremiumPaymentSuc from "../Pages/Payment/PremiumPaymentSuc";
 
 export const router = createBrowserRouter([
   {
@@ -122,5 +123,9 @@ export const router = createBrowserRouter([
   {
     path: "/boost-success",
     element: <BoostPaymentSuc />,
+  },
+  {
+    path: "/premium-success",
+    element: <PremiumPaymentSuc />,
   },
 ]);

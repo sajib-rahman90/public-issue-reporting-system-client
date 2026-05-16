@@ -19,7 +19,7 @@ const CitizenDashboard = () => {
       return res.data;
     },
   });
-  console.log(stats);
+  // console.log(stats);
 
   const chartData = [
     {

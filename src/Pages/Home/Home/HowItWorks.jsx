@@ -1,0 +1,108 @@
+import { ClipboardList, UserCheck, Settings, CheckCircle2 } from "lucide-react";
+
+const HowItWorks = () => {
+  return (
+    <section className="py-20 bg-linear-to-b from-white to-slate-50">
+      <div className="max-w-6xl mx-auto px-4">
+        {/* Heading */}
+        <div className="text-center mb-16">
+          <h2 className="text-3xl md:text-5xl font-extrabold text-gray-900">
+            How It Works
+          </h2>
+          <p className="mt-4 text-gray-600 max-w-2xl mx-auto leading-relaxed">
+            A simple and transparent workflow that explains how issues move from
+            reporting to resolution.
+          </p>
+        </div>
+
+        {/* Steps Grid */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10 relative">
+          {/* connector line for desktop */}
+          <div className="hidden lg:block absolute top-14 left-0 right-0 h-0.5 bg-gray-200"></div>
+
+          {/* Step 1 */}
+          <div className="relative bg-white rounded-3xl p-8 border border-gray-100 shadow-sm hover:shadow-xl transition-all duration-300 text-center">
+            <div className="absolute -top-5 left-1/2 -translate-x-1/2 w-10 h-10 rounded-full bg-blue-600 text-white flex items-center justify-center font-semibold shadow-md">
+              1
+            </div>
+
+            <div className="mt-6 flex justify-center text-blue-600">
+              <ClipboardList size={34} />
+            </div>
+
+            <h3 className="mt-4 text-lg font-bold text-gray-900">
+              Report an Issue
+            </h3>
+
+            <p className="mt-2 text-sm text-gray-600 leading-relaxed">
+              Users submit issues with title, description, category, image, and
+              location using a simple form.
+            </p>
+          </div>
+
+          {/* Step 2 */}
+          <div className="relative bg-white rounded-3xl p-8 border border-gray-100 shadow-sm hover:shadow-xl transition-all duration-300 text-center">
+            <div className="absolute -top-5 left-1/2 -translate-x-1/2 w-10 h-10 rounded-full bg-blue-600 text-white flex items-center justify-center font-semibold shadow-md">
+              2
+            </div>
+
+            <div className="mt-6 flex justify-center text-blue-600">
+              <UserCheck size={34} />
+            </div>
+
+            <h3 className="mt-4 text-lg font-bold text-gray-900">
+              Admin Review
+            </h3>
+
+            <p className="mt-2 text-sm text-gray-600 leading-relaxed">
+              Admin verifies submitted issues and checks validity before moving
+              forward.
+            </p>
+          </div>
+
+          {/* Step 3 */}
+          <div className="relative bg-white rounded-3xl p-8 border border-gray-100 shadow-sm hover:shadow-xl transition-all duration-300 text-center">
+            <div className="absolute -top-5 left-1/2 -translate-x-1/2 w-10 h-10 rounded-full bg-blue-600 text-white flex items-center justify-center font-semibold shadow-md">
+              3
+            </div>
+
+            <div className="mt-6 flex justify-center text-blue-600">
+              <Settings size={34} />
+            </div>
+
+            <h3 className="mt-4 text-lg font-bold text-gray-900">
+              Assign to Staff
+            </h3>
+
+            <p className="mt-2 text-sm text-gray-600 leading-relaxed">
+              Issues are assigned to relevant staff based on category and
+              location.
+            </p>
+          </div>
+
+          {/* Step 4 */}
+          <div className="relative bg-white rounded-3xl p-8 border border-gray-100 shadow-sm hover:shadow-xl transition-all duration-300 text-center">
+            <div className="absolute -top-5 left-1/2 -translate-x-1/2 w-10 h-10 rounded-full bg-blue-600 text-white flex items-center justify-center font-semibold shadow-md">
+              4
+            </div>
+
+            <div className="mt-6 flex justify-center text-blue-600">
+              <CheckCircle2 size={34} />
+            </div>
+
+            <h3 className="mt-4 text-lg font-bold text-gray-900">
+              Resolve & Update
+            </h3>
+
+            <p className="mt-2 text-sm text-gray-600 leading-relaxed">
+              Staff resolves issues and updates status so users can track
+              progress in real time.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+};
+
+export default HowItWorks;
