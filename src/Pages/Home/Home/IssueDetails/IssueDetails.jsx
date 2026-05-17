@@ -13,10 +13,8 @@ const IssueDetails = () => {
   const { user } = useAuth();
   // console.log(user);
   const axiosSecure = useAxiosSecure();
-
   const { id } = useParams();
   const navigate = useNavigate();
-  // ===== UPDATE MODAL STATE =====
   const [showModal, setShowModal] = useState(false);
   const queryClient = useQueryClient();
   const { register, handleSubmit, reset } = useForm();
@@ -30,8 +28,6 @@ const IssueDetails = () => {
   });
   // console.log(issue);
   const isOwner = user?.email === issue?.reporterEmail;
-
-  // ===== UPDATE MUTATION =====
 
   const updateMutation = useMutation({
     mutationFn: async (updatedData) => {
@@ -84,8 +80,6 @@ const IssueDetails = () => {
       }
     }
   };
-
-  // ===== UPDATE HANDLER =====
 
   const handleUpdate = (data) => {
     updateMutation.mutate({
@@ -255,8 +249,6 @@ const IssueDetails = () => {
               ))}
             </div>
           </div>
-
-          {/* ===== UPDATE MODAL ===== */}
 
           {showModal && (
             <div className="fixed inset-0 bg-black/50 flex justify-center items-center z-50">

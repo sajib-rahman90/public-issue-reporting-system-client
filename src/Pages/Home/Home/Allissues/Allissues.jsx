@@ -3,6 +3,7 @@ import { useState } from "react";
 import { Link } from "react-router";
 import useAxiosSecure from "../../../../Hooks/useAxiosSecure";
 import { toast } from "react-toastify";
+import LoaddingSpinner from "../../../../Components/LoaddingSpinner";
 
 const Allissues = () => {
   const [search, setSearch] = useState("");
@@ -14,7 +15,6 @@ const Allissues = () => {
   const queryClient = useQueryClient();
   const axiosSecure = useAxiosSecure();
 
-  // FETCH ISSUES
   const { data, isLoading } = useQuery({
     queryKey: ["issues", search, category, status, priority, page],
     queryFn: async () => {
@@ -26,7 +26,6 @@ const Allissues = () => {
     keepPreviousData: true,
   });
 
-  // UPVOTE
   const upvoteMutation = useMutation({
     mutationFn: async (id) => {
       const res = await axiosSecure.patch(`/issues/${id}/upvote`);
@@ -115,62 +114,67 @@ const Allissues = () => {
 
       {/* GRID */}
       <div className="grid md:grid-cols-3 gap-6">
-        {data?.issues?.map((issue) => (
-          <div
-            key={issue._id}
-            className="bg-white rounded-3xl overflow-hidden border border-slate-200 shadow-sm hover:shadow-lg transition duration-300"
-          >
-            {/* IMAGE */}
-            <div className="relative">
-              <img src={issue.image} className="w-full h-52 object-cover" />
-
-              <span className="absolute top-4 left-4 bg-yellow-100 text-yellow-700 text-xs px-3 py-1 rounded-full">
-                {issue.status}
-              </span>
-
-              <span className="absolute top-4 right-4 bg-red-100 text-red-600 text-xs px-3 py-1 rounded-full">
-                {issue.priority}
-              </span>
-            </div>
-
-            {/* CONTENT */}
-            <div className="p-5">
-              <p className="text-sm text-blue-600 font-medium mb-2">
-                {issue.category}
-              </p>
-
-              <h3 className="text-xl font-semibold text-slate-800">
-                {issue.title}
-              </h3>
-
-              <p className="text-sm text-slate-500 mt-2 line-clamp-2">
-                {issue.description}
-              </p>
-
-              <div className="mt-4 text-sm text-slate-500 flex items-center gap-2">
-                📍 {issue.location}
-              </div>
-
-              {/* FOOTER */}
-              <div className="mt-6 flex items-center justify-between">
-                <button
-                  onClick={() => handleUpvote(issue._id)}
-                  disabled={upvoteMutation.isPending}
-                  className="px-4 py-2 bg-slate-100 rounded-xl text-sm hover:bg-slate-200 disabled:opacity-50"
-                >
-                  👍 {issue.upvote}
-                </button>
-
-                <Link
-                  to={`/issues/${issue._id}`}
-                  className="px-5 py-2 bg-blue-600 text-white rounded-xl hover:bg-blue-700"
-                >
-                  View Details
-                </Link>
-              </div>
-            </div>
+        {isLoading ? (
+          <div className="col-span-full flex justify-center py-10">
+            <LoaddingSpinner />
           </div>
-        ))}
+        ) : (
+          data?.issues?.map((issue) => (
+            <div
+              key={issue._id}
+              className="bg-white rounded-3xl overflow-hidden border border-slate-200 shadow-sm hover:shadow-lg transition duration-300"
+            >
+              {/* IMAGE */}
+              <div className="relative">
+                <img src={issue.image} className="w-full h-52 object-cover" />
+
+                <span className="absolute top-4 left-4 bg-yellow-100 text-yellow-700 text-xs px-3 py-1 rounded-full">
+                  {issue.status}
+                </span>
+
+                <span className="absolute top-4 right-4 bg-red-100 text-red-600 text-xs px-3 py-1 rounded-full">
+                  {issue.priority}
+                </span>
+              </div>
+
+              {/* CONTENT */}
+              <div className="p-5">
+                <p className="text-sm text-blue-600 font-medium mb-2">
+                  {issue.category}
+                </p>
+
+                <h3 className="text-xl font-semibold text-slate-800">
+                  {issue.title}
+                </h3>
+
+                <p className="text-sm text-slate-500 mt-2 line-clamp-2">
+                  {issue.description}
+                </p>
+
+                <div className="mt-4 text-sm text-slate-500 flex items-center gap-2">
+                  📍 {issue.location}
+                </div>
+
+                <div className="mt-6 flex items-center justify-between">
+                  <button
+                    onClick={() => handleUpvote(issue._id)}
+                    disabled={upvoteMutation.isPending}
+                    className="px-4 py-2 bg-slate-100 rounded-xl text-sm hover:bg-slate-200"
+                  >
+                    👍 {issue.upvote}
+                  </button>
+
+                  <Link
+                    to={`/issues/${issue._id}`}
+                    className="px-5 py-2 bg-blue-600 text-white rounded-xl"
+                  >
+                    View Details
+                  </Link>
+                </div>
+              </div>
+            </div>
+          ))
+        )}
       </div>
 
       {/* PAGINATION */}

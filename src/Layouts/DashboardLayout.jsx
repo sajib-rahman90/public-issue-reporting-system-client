@@ -130,6 +130,18 @@ const DashboardLayout = () => {
               <>
                 <li>
                   <NavLink
+                    to={"/dashboard/admin-dashboard-stats"}
+                    className="is-drawer-close:tooltip is-drawer-close:tooltip-right"
+                    data-tip="Admin Dashboard"
+                  >
+                    <RiAdminFill />
+                    <span className="is-drawer-close:hidden">
+                      Admin Dashboard
+                    </span>
+                  </NavLink>
+                </li>
+                <li>
+                  <NavLink
                     to={"/dashboard/admin-all-issues"}
                     className="is-drawer-close:tooltip is-drawer-close:tooltip-right"
                     data-tip="All Issues"
@@ -143,7 +155,7 @@ const DashboardLayout = () => {
                   <NavLink
                     to={"/dashboard/admin-manage-users"}
                     className="is-drawer-close:tooltip is-drawer-close:tooltip-right"
-                    data-tip="Admin Manage Users"
+                    data-tip="Manage Users"
                   >
                     <RiAdminFill />
                     <span className="is-drawer-close:hidden">Manage Users</span>
@@ -154,10 +166,21 @@ const DashboardLayout = () => {
                   <NavLink
                     to={"/dashboard/admin-manage-staff"}
                     className="is-drawer-close:tooltip is-drawer-close:tooltip-right"
-                    data-tip="Admin Manage Staff"
+                    data-tip="Manages Staff"
                   >
                     <RiAdminFill />
                     <span className="is-drawer-close:hidden">Manage Staff</span>
+                  </NavLink>
+                </li>
+
+                <li>
+                  <NavLink
+                    to={"/dashboard/admin-payments"}
+                    className="is-drawer-close:tooltip is-drawer-close:tooltip-right"
+                    data-tip="Admin Payments"
+                  >
+                    <RiAdminFill />
+                    <span className="is-drawer-close:hidden">Payments</span>
                   </NavLink>
                 </li>
 

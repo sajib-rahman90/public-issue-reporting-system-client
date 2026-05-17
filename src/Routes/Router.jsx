@@ -23,6 +23,8 @@ import StaffAssignedIssues from "../Pages/Dashboard/Staff/StaffAssignedIssues";
 import StaffDashboard from "../Pages/Dashboard/Staff/StaffDashboard";
 import PremiumPaymentSuc from "../Pages/Payment/PremiumPaymentSuc";
 import NotFound from "../Components/NotFound";
+import AdminDashboard from "../Pages/Dashboard/Admin/AdminDashboard";
+import AdminPayments from "../Pages/Dashboard/Admin/AdminPayments";
 
 export const router = createBrowserRouter([
   {
@@ -89,6 +91,10 @@ export const router = createBrowserRouter([
         element: <CitizenProfile />,
       },
       {
+        path: "admin-dashboard-stats",
+        element: <AdminDashboard />,
+      },
+      {
         path: "admin-all-issues",
         element: <AdminAllissues />,
       },
@@ -99,6 +105,10 @@ export const router = createBrowserRouter([
       {
         path: "admin-manage-staff",
         element: <AdminManageStaff />,
+      },
+      {
+        path: "admin-payments",
+        element: <AdminPayments />,
       },
       {
         path: "admin-profile",

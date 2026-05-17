@@ -43,49 +43,41 @@ const CitizenDashboard = () => {
       <h2 className="text-3xl font-bold mb-8">Citizen Dashboard</h2>
 
       {/* Stats Cards */}
-
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-5">
-        <div className="bg-white shadow rounded-xl p-5">
+        <div className="bg-blue-500 text-white shadow rounded-xl p-5">
           <h3 className="text-lg font-semibold">Total Issues</h3>
-
           <p className="text-3xl font-bold mt-3">{stats?.totalIssues || 0}</p>
         </div>
 
-        <div className="bg-white shadow rounded-xl p-5">
+        <div className="bg-yellow-500 text-white shadow rounded-xl p-5">
           <h3 className="text-lg font-semibold">Pending</h3>
-
           <p className="text-3xl font-bold mt-3">{stats?.pendingIssues || 0}</p>
         </div>
 
-        <div className="bg-white shadow rounded-xl p-5">
+        <div className="bg-cyan-400 text-white shadow rounded-xl p-5">
           <h3 className="text-lg font-semibold">In Progress</h3>
-
           <p className="text-3xl font-bold mt-3">
             {stats?.inProgressIssues || 0}
           </p>
         </div>
 
-        <div className="bg-white shadow rounded-xl p-5">
+        <div className="bg-green-500 text-white shadow rounded-xl p-5">
           <h3 className="text-lg font-semibold">Resolved</h3>
-
           <p className="text-3xl font-bold mt-3">
             {stats?.resolvedIssues || 0}
           </p>
         </div>
 
-        <div className="bg-white shadow rounded-xl p-5">
+        <div className="bg-purple-500 text-white shadow rounded-xl p-5">
           <h3 className="text-lg font-semibold">Payments</h3>
-
           <p className="text-3xl font-bold mt-3">{stats?.totalPayments || 0}</p>
         </div>
       </div>
 
-      {/* Chart */}
-
       <div className="bg-white shadow rounded-xl p-6 mt-10">
         <h3 className="text-2xl font-bold mb-5">Issue Status Overview</h3>
 
-        <div className="w-full md:w-8/12 h-87.5 md:h-[450px] mx-auto">
+        <div className="w-full md:w-8/12 h-87.5 md:h-112.5 mx-auto">
           {chartData.length > 0 && (
             <ResponsiveContainer>
               <PieChart>
