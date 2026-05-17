@@ -1,6 +1,5 @@
 import { Link, NavLink } from "react-router";
 import useAuth from "../../../Hooks/useAuth";
-import { useForm } from "react-hook-form";
 import { toast } from "react-toastify";
 
 const Navber = () => {
@@ -137,7 +136,7 @@ const Navber = () => {
                 role="button"
                 className="btn btn-ghost btn-circle avatar"
               >
-                <div className="w-10 border-2 border-orange-300 rounded-full">
+                <div className="w-10  rounded-full">
                   <img
                     alt=""
                     src={
@@ -149,7 +148,7 @@ const Navber = () => {
               </div>
               <ul
                 tabIndex="-1"
-                className="menu  menu-sm dropdown-content bg-linear-to-r from-gray-100 to-orange-100 rounded-box z-50 mt-3 w-52 p-2 shadow"
+                className="menu  menu-sm dropdown-content bg-blue-50 rounded-box z-50 mt-3 w-52 p-2 shadow"
               >
                 <div className=" pb-3 border-b border-b-gray-200">
                   <li className="text-sm font-bold text-gray-700">

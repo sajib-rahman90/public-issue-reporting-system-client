@@ -19,8 +19,8 @@ const LatestResolved = () => {
   }
 
   return (
-    <section className="py-20 bg-slate-50">
-      <div className="max-w-7xl mx-auto px-4">
+    <section className="  py-20 bg-slate-50">
+      <div className="max-w-11/12 mx-auto px-4">
         {/* Header */}
 
         <div className="text-center mb-12">

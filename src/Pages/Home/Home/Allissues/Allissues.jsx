@@ -47,7 +47,7 @@ const Allissues = () => {
   };
 
   return (
-    <div className="p-6">
+    <div className="max-w-11/12 mx-auto sm:px-4 py-9">
       {/* FILTERS */}
       <div className="grid grid-cols-1 md:grid-cols-4 gap-3 mb-6">
         {/* SEARCH */}

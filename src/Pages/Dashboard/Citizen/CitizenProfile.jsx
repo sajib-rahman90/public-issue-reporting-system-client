@@ -6,11 +6,8 @@ import LoaddingSpinner from "../../../Components/LoaddingSpinner";
 
 const CitizenProfile = () => {
   const { user } = useAuth();
-
   const axiosSecure = useAxiosSecure();
-
   const [userInfo, setUserInfo] = useState({});
-
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
@@ -32,7 +29,6 @@ const CitizenProfile = () => {
     e.preventDefault();
     const name = e.target.name.value;
     const photo = e.target.photo.value;
-
     const userData = {
       name,
       photo,
@@ -60,7 +56,7 @@ const CitizenProfile = () => {
   const handleSubscribe = async () => {
     try {
       const res = await axiosSecure.post("/create-payment-session", {
-        email: user.email,
+        email: user?.email,
         name: userInfo.name,
         price: 1000,
       });

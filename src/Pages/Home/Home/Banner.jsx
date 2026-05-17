@@ -1,6 +1,11 @@
-import { useEffect, useState } from "react";
 import { FaArrowRight, FaCheckCircle } from "react-icons/fa";
 import { Link } from "react-router";
+import { Swiper, SwiperSlide } from "swiper/react";
+import { Autoplay, Pagination } from "swiper/modules";
+import { motion } from "framer-motion";
+import "swiper/css";
+import "swiper/css/navigation";
+import "swiper/css/pagination";
 
 const slides = [
   {
@@ -29,87 +34,101 @@ const slides = [
   },
 ];
 
+const textVariant = {
+  hidden: { opacity: 0, y: 25 },
+  visible: { opacity: 1, y: 0 },
+};
+
 const Banner = () => {
-  const [current, setCurrent] = useState(0);
-
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setCurrent((prev) => (prev + 1) % slides.length);
-    }, 5000);
-
-    return () => clearInterval(interval);
-  }, []);
-
-  const slide = slides[current];
-
   return (
-    <div className="relative w-full h-[70vh] sm:h-[80vh] md:h-[85vh] flex items-center justify-center overflow-hidden">
-      <div
-        className="absolute inset-0 bg-cover bg-center transition-all duration-700 scale-105"
-        style={{ backgroundImage: `url(${slide.image})` }}
-      />
+    <div className="relative w-full h-[60vh] sm:h-[70vh] md:h-[80vh] lg:h-[85vh] overflow-hidden">
+      <Swiper
+        modules={[Autoplay, Pagination]}
+        autoplay={{ delay: 5000, disableOnInteraction: false }}
+        pagination={{ clickable: true }}
+        loop={true}
+        className="h-full"
+      >
+        {slides.map((slide) => (
+          <SwiperSlide key={slide.id}>
+            <div className="relative w-full h-[60vh] sm:h-[70vh] md:h-[80vh] lg:h-[85vh] flex items-center justify-center">
+              {/* background */}
+              <div
+                className="absolute inset-0 bg-cover bg-center scale-105"
+                style={{ backgroundImage: `url(${slide.image})` }}
+              />
 
-      <div className="absolute inset-0 bg-black/60" />
+              {/* overlay */}
+              <div className="absolute inset-0 bg-black/60 sm:bg-black/55 md:bg-black/60" />
 
-      <div className="relative z-10 w-full max-w-5xl px-4 sm:px-6 text-center text-white">
-        <div className="inline-flex items-center gap-2 bg-white/10 px-3 sm:px-4 py-1.5 sm:py-2 rounded-full backdrop-blur-md mb-4 sm:mb-6 text-xs sm:text-sm">
-          <FaCheckCircle className="text-green-400 shrink-0" />
-          <span>{slide.highlight}</span>
-        </div>
+              {/* content wrapper */}
+              <div className="relative z-10 w-full max-w-4xl lg:max-w-5xl px-4 sm:px-6 text-center text-white">
+                {/* badge */}
+                <motion.div
+                  key={slide.id + "badge"}
+                  variants={textVariant}
+                  initial="hidden"
+                  animate="visible"
+                  transition={{ duration: 0.4, delay: 0.1 }}
+                  className="inline-flex items-center gap-2 bg-white/10 px-3 sm:px-4 py-1 sm:py-2 rounded-full backdrop-blur-md mb-4 sm:mb-6 text-[11px] sm:text-sm"
+                >
+                  <FaCheckCircle className="text-green-400 shrink-0 text-sm sm:text-base" />
+                  <span>{slide.highlight}</span>
+                </motion.div>
 
-        <h1 className="text-xl sm:text-3xl md:text-5xl font-bold leading-snug sm:leading-tight px-2">
-          {slide.title}
-        </h1>
+                {/* title */}
+                <motion.h1
+                  key={slide.id + "title"}
+                  variants={textVariant}
+                  initial="hidden"
+                  animate="visible"
+                  transition={{ duration: 0.5, delay: 0.2 }}
+                  className="text-lg sm:text-2xl md:text-4xl lg:text-5xl font-bold leading-snug sm:leading-tight px-1"
+                >
+                  {slide.title}
+                </motion.h1>
 
-        <p className="mt-3 sm:mt-5 text-xs sm:text-sm md:text-lg text-gray-200 max-w-2xl mx-auto px-2 leading-relaxed">
-          {slide.desc}
-        </p>
-        {/* buttons */}
-        <div className="mt-5 sm:mt-8 flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center items-center">
-          <Link
-            to="/report-issues"
-            className="w-full sm:w-auto bg-orange-500 hover:bg-orange-600 px-5 sm:px-6 py-3 rounded-xl flex items-center justify-center gap-2 transition text-sm sm:text-base"
-          >
-            Report Issue
-            <FaArrowRight />
-          </Link>
+                {/* description */}
+                <motion.p
+                  key={slide.id + "desc"}
+                  variants={textVariant}
+                  initial="hidden"
+                  animate="visible"
+                  transition={{ duration: 0.6, delay: 0.3 }}
+                  className="mt-3 sm:mt-5 text-[11px] sm:text-sm md:text-base lg:text-lg text-gray-200 max-w-xl sm:max-w-2xl mx-auto px-2 leading-relaxed"
+                >
+                  {slide.desc}
+                </motion.p>
 
-          <Link
-            to="/all-issues"
-            className="w-full sm:w-auto bg-white text-black hover:bg-gray-200 px-5 sm:px-6 py-3 rounded-xl transition text-sm sm:text-base"
-          >
-            Explore Issues
-          </Link>
-        </div>
-        <div className="mt-8 sm:mt-10 grid grid-cols-3 gap-2 sm:gap-4 text-center text-white/90">
-          <div>
-            <p className="text-base sm:text-xl md:text-2xl font-bold">1000+</p>
-            <p className="text-[10px] sm:text-sm">Issues</p>
-          </div>
+                {/* buttons */}
+                <motion.div
+                  key={slide.id + "btn"}
+                  variants={textVariant}
+                  initial="hidden"
+                  animate="visible"
+                  transition={{ duration: 0.7, delay: 0.4 }}
+                  className="mt-5 sm:mt-7 flex flex-col sm:flex-row gap-2 sm:gap-4 justify-center items-center"
+                >
+                  <Link
+                    to="/report-issues"
+                    className="bg-orange-500 hover:bg-orange-600 px-4 py-2 sm:px-6 sm:py-3 rounded-lg sm:rounded-xl flex items-center justify-center gap-2 transition text-xs sm:text-sm md:text-base"
+                  >
+                    Report Issue
+                    <FaArrowRight className="text-xs sm:text-sm" />
+                  </Link>
 
-          <div>
-            <p className="text-base sm:text-xl md:text-2xl font-bold">500+</p>
-            <p className="text-[10px] sm:text-sm">Resolved</p>
-          </div>
-
-          <div>
-            <p className="text-base sm:text-xl md:text-2xl font-bold">24/7</p>
-            <p className="text-[10px] sm:text-sm">Support</p>
-          </div>
-        </div>
-      </div>
-
-      <div className="absolute bottom-4 sm:bottom-6 left-1/2 -translate-x-1/2 flex gap-2">
-        {slides.map((_, index) => (
-          <button
-            key={index}
-            onClick={() => setCurrent(index)}
-            className={`w-2.5 h-2.5 sm:w-3 sm:h-3 rounded-full transition ${
-              current === index ? "bg-blue-500" : "bg-white/40"
-            }`}
-          />
+                  <Link
+                    to="/all-issues"
+                    className="bg-white text-black hover:bg-gray-200 px-4 py-2 sm:px-6 sm:py-3 rounded-lg sm:rounded-xl transition text-xs sm:text-sm md:text-base"
+                  >
+                    Explore Issues
+                  </Link>
+                </motion.div>
+              </div>
+            </div>
+          </SwiperSlide>
         ))}
-      </div>
+      </Swiper>
     </div>
   );
 };

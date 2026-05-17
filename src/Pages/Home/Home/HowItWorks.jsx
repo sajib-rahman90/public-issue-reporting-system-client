@@ -1,11 +1,18 @@
 import { ClipboardList, UserCheck, Settings, CheckCircle2 } from "lucide-react";
+import { motion } from "framer-motion";
 
 const HowItWorks = () => {
   return (
     <section className="py-20 bg-linear-to-b from-white to-slate-50">
-      <div className="max-w-6xl mx-auto px-4">
+      <div className="max-w-11/12 mx-auto sm:px-4">
         {/* Heading */}
-        <div className="text-center mb-16">
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
+          className="text-center mb-16"
+        >
           <h2 className="text-3xl md:text-5xl font-extrabold text-gray-900">
             How It Works
           </h2>
@@ -13,15 +20,21 @@ const HowItWorks = () => {
             A simple and transparent workflow that explains how issues move from
             reporting to resolution.
           </p>
-        </div>
+        </motion.div>
 
         {/* Steps Grid */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10 relative">
-          {/* connector line for desktop */}
+          {/* connector line */}
           <div className="hidden lg:block absolute top-14 left-0 right-0 h-0.5 bg-gray-200"></div>
 
           {/* Step 1 */}
-          <div className="relative bg-white rounded-3xl p-8 border border-gray-100 shadow-sm hover:shadow-xl transition-all duration-300 text-center">
+          <motion.div
+            initial={{ opacity: 0, y: 40 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5, delay: 0.1 }}
+            className="relative bg-white rounded-3xl p-8 border border-gray-100 shadow-sm hover:shadow-xl transition-all duration-300 text-center"
+          >
             <div className="absolute -top-5 left-1/2 -translate-x-1/2 w-10 h-10 rounded-full bg-blue-600 text-white flex items-center justify-center font-semibold shadow-md">
               1
             </div>
@@ -38,10 +51,16 @@ const HowItWorks = () => {
               Users submit issues with title, description, category, image, and
               location using a simple form.
             </p>
-          </div>
+          </motion.div>
 
           {/* Step 2 */}
-          <div className="relative bg-white rounded-3xl p-8 border border-gray-100 shadow-sm hover:shadow-xl transition-all duration-300 text-center">
+          <motion.div
+            initial={{ opacity: 0, y: 40 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5, delay: 0.2 }}
+            className="relative bg-white rounded-3xl p-8 border border-gray-100 shadow-sm hover:shadow-xl transition-all duration-300 text-center"
+          >
             <div className="absolute -top-5 left-1/2 -translate-x-1/2 w-10 h-10 rounded-full bg-blue-600 text-white flex items-center justify-center font-semibold shadow-md">
               2
             </div>
@@ -58,10 +77,16 @@ const HowItWorks = () => {
               Admin verifies submitted issues and checks validity before moving
               forward.
             </p>
-          </div>
+          </motion.div>
 
           {/* Step 3 */}
-          <div className="relative bg-white rounded-3xl p-8 border border-gray-100 shadow-sm hover:shadow-xl transition-all duration-300 text-center">
+          <motion.div
+            initial={{ opacity: 0, y: 40 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5, delay: 0.3 }}
+            className="relative bg-white rounded-3xl p-8 border border-gray-100 shadow-sm hover:shadow-xl transition-all duration-300 text-center"
+          >
             <div className="absolute -top-5 left-1/2 -translate-x-1/2 w-10 h-10 rounded-full bg-blue-600 text-white flex items-center justify-center font-semibold shadow-md">
               3
             </div>
@@ -78,10 +103,16 @@ const HowItWorks = () => {
               Issues are assigned to relevant staff based on category and
               location.
             </p>
-          </div>
+          </motion.div>
 
           {/* Step 4 */}
-          <div className="relative bg-white rounded-3xl p-8 border border-gray-100 shadow-sm hover:shadow-xl transition-all duration-300 text-center">
+          <motion.div
+            initial={{ opacity: 0, y: 40 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5, delay: 0.4 }}
+            className="relative bg-white rounded-3xl p-8 border border-gray-100 shadow-sm hover:shadow-xl transition-all duration-300 text-center"
+          >
             <div className="absolute -top-5 left-1/2 -translate-x-1/2 w-10 h-10 rounded-full bg-blue-600 text-white flex items-center justify-center font-semibold shadow-md">
               4
             </div>
@@ -98,7 +129,7 @@ const HowItWorks = () => {
               Staff resolves issues and updates status so users can track
               progress in real time.
             </p>
-          </div>
+          </motion.div>
         </div>
       </div>
     </section>
