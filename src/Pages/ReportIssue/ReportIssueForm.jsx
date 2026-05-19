@@ -21,7 +21,6 @@ const ReportIssueForm = () => {
   const [userInfo, setUserInfo] = useState(null);
   const [reportedCount, setReportedCount] = useState(0);
 
-  //  ADD THIS (USER INFO + COUNT FETCH)
   useEffect(() => {
     if (user?.email) {
       axiosSecure.get(`/users/${user.email}`).then((res) => {
@@ -35,46 +34,30 @@ const ReportIssueForm = () => {
   }, [user, axiosSecure]);
 
   const handleReportIssue = async (data) => {
-    // ADD THIS (LIMIT CHECK)
     if (!userInfo?.isPremium && reportedCount >= 3) {
       toast.error("Free users can report maximum 3 issues");
       navigate("/dashboard/profile");
       return;
     }
-    console.log(data);
+    // console.log(data);
     const issueImage = data.photo[0];
-
     const formData = new FormData();
     formData.append("image", issueImage);
-
     const image_API_URL = `https://api.imgbb.com/1/upload?key=${import.meta.env.VITE_image_host_key}`;
-
     const res = await axios.post(image_API_URL, formData);
-
     // console.log("after image upload", res.data);
-
     const imageUrl = res.data.data.display_url;
     const issueInfo = {
       title: data.issueTitle,
-
       category: data.category,
-
       location: data.location,
-
       description: data.description,
-
       image: imageUrl,
-
       status: "Pending",
-
       priority: "Normal",
-
       upvote: 0,
-
       reporterEmail: user.email,
-
       reporterName: user.displayName,
-
       createdAt: new Date(),
     };
 
@@ -84,7 +67,7 @@ const ReportIssueForm = () => {
     // console.log("after saving issue", issueRes.data);
 
     const issueRes = await axiosSecure.post("/issues", issueInfo);
-    //  ADD THIS (TRACKING CREATE + NAVIGATE)
+
     if (issueRes.data.insertedId) {
       const trackingInfo = {
         issueId: issueRes.data.insertedId,

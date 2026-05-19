@@ -26,6 +26,15 @@ const IssueDetails = () => {
       return result.data;
     },
   });
+
+  const { data: timeline = [] } = useQuery({
+    queryKey: ["issue-timeline", id],
+    queryFn: async () => {
+      const result = await axiosSecure.get(`/issue-tracking/${id}`);
+      console.log(result.data);
+      return result.data;
+    },
+  });
   // console.log(issue);
   const isOwner = user?.email === issue?.reporterEmail;
 
@@ -47,7 +56,7 @@ const IssueDetails = () => {
       setShowModal(false);
     },
     onError: (error) => {
-      toast.error(error?.response?.data?.message || "Update failed");
+      toast.error(error?.res?.data?.message || "Update failed");
     },
   });
 
@@ -234,7 +243,7 @@ const IssueDetails = () => {
           </div>
 
           {/* TIMELINE */}
-          <div className="mt-8 bg-gray-50 rounded-2xl p-5 border border-gray-200">
+          {/* <div className="mt-8 bg-gray-50 rounded-2xl p-5 border border-gray-200">
             <h3 className="text-lg font-semibold text-gray-800 mb-4">
               Issue Timeline
             </h3>
@@ -248,6 +257,33 @@ const IssueDetails = () => {
                 </div>
               ))}
             </div>
+          </div> */}
+
+          {/* ISSUE TIMELINE */}
+          <div className="mt-8 bg-gray-50 rounded-2xl p-5 border border-gray-200">
+            <h3 className="text-lg font-semibold text-gray-800 mb-4">
+              Issue Timeline
+            </h3>
+            {timeline.length === 0 ? (
+              <p className="text-gray-500">No timeline updates available</p>
+            ) : (
+              <div className="space-y-3 text-sm text-gray-700">
+                {timeline.map((item) => (
+                  <div key={item._id} className="border-b border-gray-200 pb-2">
+                    <p>
+                      <span className="font-semibold text-blue-500">
+                        {item.status}
+                      </span>
+                      {" - "}
+                      {item.message}
+                    </p>
+                    <p className="text-xs font-semibold">
+                      {new Date(item.date).toLocaleString()} • {item.updatedBy}
+                    </p>
+                  </div>
+                ))}
+              </div>
+            )}
           </div>
 
           {showModal && (
@@ -270,11 +306,8 @@ const IssueDetails = () => {
                     className="w-full border p-3 rounded-xl"
                   >
                     <option value="Road Damage">Road Damage</option>
-
                     <option value="Broken Streelight">Broken Streelight</option>
-
                     <option value="Water Leakage">Water Leakage</option>
-
                     <option value="Garbage Overflow">Garbage Overflow</option>
                   </select>
 

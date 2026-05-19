@@ -137,8 +137,36 @@ const AllIssues = () => {
               <tr key={issue._id}>
                 <td>{issue.title}</td>
                 <td>{issue.category}</td>
-                <td>{issue.status}</td>
-                <td>{issue.priority}</td>
+                <td>
+                  <span
+                    className={`px-3 py-1 rounded-full text-xs font-medium ${
+                      issue.status === "Pending"
+                        ? "bg-yellow-100 text-yellow-700"
+                        : issue.status === "In-Progress"
+                          ? "bg-blue-100 text-blue-700"
+                          : issue.status === "Working"
+                            ? "bg-indigo-100 text-indigo-700"
+                            : issue.status === "Resolved"
+                              ? "bg-green-100 text-green-700"
+                              : issue.status === "Closed"
+                                ? "bg-gray-100 text-gray-700"
+                                : "bg-red-100 text-red-700"
+                    }`}
+                  >
+                    {issue.status}
+                  </span>
+                </td>
+                <td>
+                  <span
+                    className={`px-3 py-1 rounded-full text-xs font-medium ${
+                      issue.priority === "High"
+                        ? "bg-red-100 text-red-600"
+                        : "bg-green-100 text-green-600"
+                    }`}
+                  >
+                    {issue.priority}
+                  </span>
+                </td>
 
                 <td>
                   {issue.assignedStaffName || (

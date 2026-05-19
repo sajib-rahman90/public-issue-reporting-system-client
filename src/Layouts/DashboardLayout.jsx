@@ -2,6 +2,16 @@ import { Link, NavLink, Outlet } from "react-router";
 import useRole from "../Hooks/useRole";
 import { ImProfile } from "react-icons/im";
 import { RiAdminFill } from "react-icons/ri";
+import {
+  MdAssignmentLate,
+  MdDashboard,
+  MdDashboardCustomize,
+  MdOutlinePayments,
+  MdOutlineReport,
+  MdReportGmailerrorred,
+} from "react-icons/md";
+import { GrUserWorker } from "react-icons/gr";
+import { FaTasks, FaUsers } from "react-icons/fa";
 
 const DashboardLayout = () => {
   const [role] = useRole();
@@ -82,7 +92,7 @@ const DashboardLayout = () => {
                     className="is-drawer-close:tooltip is-drawer-close:tooltip-right"
                     data-tip="citizen-stats"
                   >
-                    📊
+                    <MdDashboardCustomize />
                     <span className="is-drawer-close:hidden">
                       Citizen stats
                     </span>
@@ -95,7 +105,7 @@ const DashboardLayout = () => {
                     className="is-drawer-close:tooltip is-drawer-close:tooltip-right"
                     data-tip="User Report Issue"
                   >
-                    👤
+                    <MdOutlineReport />
                     <span className="is-drawer-close:hidden">
                       Citizen Report Issue
                     </span>
@@ -108,7 +118,7 @@ const DashboardLayout = () => {
                     className="is-drawer-close:tooltip is-drawer-close:tooltip-right"
                     data-tip="My Issues"
                   >
-                    👤
+                    <MdAssignmentLate />
                     <span className="is-drawer-close:hidden">My Issues</span>
                   </NavLink>
                 </li>
@@ -134,7 +144,7 @@ const DashboardLayout = () => {
                     className="is-drawer-close:tooltip is-drawer-close:tooltip-right"
                     data-tip="Admin Dashboard"
                   >
-                    <RiAdminFill />
+                    <MdDashboard />
                     <span className="is-drawer-close:hidden">
                       Admin Dashboard
                     </span>
@@ -146,7 +156,7 @@ const DashboardLayout = () => {
                     className="is-drawer-close:tooltip is-drawer-close:tooltip-right"
                     data-tip="All Issues"
                   >
-                    <RiAdminFill />
+                    <MdReportGmailerrorred />
                     <span className="is-drawer-close:hidden">All Issues</span>
                   </NavLink>
                 </li>
@@ -157,7 +167,7 @@ const DashboardLayout = () => {
                     className="is-drawer-close:tooltip is-drawer-close:tooltip-right"
                     data-tip="Manage Users"
                   >
-                    <RiAdminFill />
+                    <FaUsers />
                     <span className="is-drawer-close:hidden">Manage Users</span>
                   </NavLink>
                 </li>
@@ -168,7 +178,7 @@ const DashboardLayout = () => {
                     className="is-drawer-close:tooltip is-drawer-close:tooltip-right"
                     data-tip="Manages Staff"
                   >
-                    <RiAdminFill />
+                    <GrUserWorker />
                     <span className="is-drawer-close:hidden">Manage Staff</span>
                   </NavLink>
                 </li>
@@ -179,7 +189,7 @@ const DashboardLayout = () => {
                     className="is-drawer-close:tooltip is-drawer-close:tooltip-right"
                     data-tip="Admin Payments"
                   >
-                    <RiAdminFill />
+                    <MdOutlinePayments />
                     <span className="is-drawer-close:hidden">Payments</span>
                   </NavLink>
                 </li>
@@ -206,7 +216,7 @@ const DashboardLayout = () => {
                     className="is-drawer-close:tooltip is-drawer-close:tooltip-right"
                     data-tip="Dashboard"
                   >
-                    <RiAdminFill />
+                    <MdDashboard />
                     <span className="is-drawer-close:hidden">Dashboard</span>
                   </NavLink>
                 </li>
@@ -217,7 +227,7 @@ const DashboardLayout = () => {
                     className="is-drawer-close:tooltip is-drawer-close:tooltip-right"
                     data-tip="Assigned Issued"
                   >
-                    <RiAdminFill />
+                    <FaTasks />
                     <span className="is-drawer-close:hidden">
                       Assigned Issued
                     </span>

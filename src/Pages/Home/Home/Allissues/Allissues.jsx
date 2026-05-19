@@ -132,8 +132,14 @@ const Allissues = () => {
                   {issue.status}
                 </span>
 
-                <span className="absolute top-4 right-4 bg-red-100 text-red-600 text-xs px-3 py-1 rounded-full">
-                  {issue.priority}
+                <span
+                  className={`absolute top-4 right-4 text-xs px-3 py-1 rounded-full ${
+                    issue.priority === "High"
+                      ? "bg-red-100 text-red-600"
+                      : "bg-green-100 text-green-600"
+                  }`}
+                >
+                  {issue.priority === "High" ? "🔥 High" : "✓ Normal"}
                 </span>
               </div>
 

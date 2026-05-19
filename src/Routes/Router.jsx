@@ -1,7 +1,6 @@
 import { createBrowserRouter } from "react-router";
 import RootLayout from "../Layouts/RootLayout";
 import Home from "../Pages/Home/Home/Home";
-
 import Login from "../Pages/Login/Login";
 import Resigter from "../Pages/Register/Resigter";
 import PrivateRoute from "./PrivateRoute";
@@ -25,6 +24,8 @@ import PremiumPaymentSuc from "../Pages/Payment/PremiumPaymentSuc";
 import NotFound from "../Components/NotFound";
 import AdminDashboard from "../Pages/Dashboard/Admin/AdminDashboard";
 import AdminPayments from "../Pages/Dashboard/Admin/AdminPayments";
+import BoostPaymentFail from "../Pages/Payment/BoostPaymentFail";
+import PremiumePymentFail from "../Pages/Payment/PremiumePymentFail";
 
 export const router = createBrowserRouter([
   {
@@ -76,31 +77,59 @@ export const router = createBrowserRouter([
     children: [
       {
         path: "user-report-issue",
-        element: <UserReportIssue />,
+        element: (
+          <PrivateRoute>
+            <UserReportIssue />
+          </PrivateRoute>
+        ),
       },
       {
         path: "my-issues",
-        element: <MyIssues />,
+        element: (
+          <PrivateRoute>
+            <MyIssues />
+          </PrivateRoute>
+        ),
       },
       {
         path: "citizen-stats",
-        element: <CitizenDashboard />,
+        element: (
+          <PrivateRoute>
+            <CitizenDashboard />
+          </PrivateRoute>
+        ),
       },
       {
         path: "citizen-profile",
-        element: <CitizenProfile />,
+        element: (
+          <PrivateRoute>
+            <CitizenProfile />
+          </PrivateRoute>
+        ),
       },
       {
         path: "admin-dashboard-stats",
-        element: <AdminDashboard />,
+        element: (
+          <PrivateRoute>
+            <AdminDashboard />
+          </PrivateRoute>
+        ),
       },
       {
         path: "admin-all-issues",
-        element: <AdminAllissues />,
+        element: (
+          <PrivateRoute>
+            <AdminAllissues />
+          </PrivateRoute>
+        ),
       },
       {
         path: "admin-manage-users",
-        element: <AdminManageUsers />,
+        element: (
+          <PrivateRoute>
+            <AdminManageUsers />
+          </PrivateRoute>
+        ),
       },
       {
         path: "admin-manage-staff",
@@ -108,23 +137,43 @@ export const router = createBrowserRouter([
       },
       {
         path: "admin-payments",
-        element: <AdminPayments />,
+        element: (
+          <PrivateRoute>
+            <AdminPayments />
+          </PrivateRoute>
+        ),
       },
       {
         path: "admin-profile",
-        element: <AdminProfile />,
+        element: (
+          <PrivateRoute>
+            <AdminProfile />
+          </PrivateRoute>
+        ),
       },
       {
         path: "staff-dashboard",
-        element: <StaffDashboard />,
+        element: (
+          <PrivateRoute>
+            <StaffDashboard />
+          </PrivateRoute>
+        ),
       },
       {
         path: "staff-profile",
-        element: <StaffProfile />,
+        element: (
+          <PrivateRoute>
+            <StaffProfile />
+          </PrivateRoute>
+        ),
       },
       {
         path: "staff-assigned-issues",
-        element: <StaffAssignedIssues />,
+        element: (
+          <PrivateRoute>
+            <StaffAssignedIssues />
+          </PrivateRoute>
+        ),
       },
     ],
   },
@@ -133,7 +182,15 @@ export const router = createBrowserRouter([
     element: <BoostPaymentSuc />,
   },
   {
+    path: "/boost-cancel",
+    element: <BoostPaymentFail />,
+  },
+  {
     path: "/premium-success",
     element: <PremiumPaymentSuc />,
+  },
+  {
+    path: "/premium-cancel",
+    element: <PremiumePymentFail />,
   },
 ]);
