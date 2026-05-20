@@ -19,11 +19,11 @@ const FeaturesSection = () => {
           transition={{ duration: 0.6 }}
           className="text-center max-w-3xl mx-auto mb-16"
         >
-          <h2 className="text-3xl md:text-4xl font-bold text-gray-900 ">
+          <h2 className="text-3xl md:text-4xl font-bold text-black ">
             Application Features
           </h2>
 
-          <p className="mt-6 text-base md:text-lg text-gray-600 leading-relaxed">
+          <p className="mt-3 text-base md:text-lg text-gray-700 leading-relaxed">
             A complete platform to report, track, assign, and resolve civic
             issues with transparency and control.
           </p>

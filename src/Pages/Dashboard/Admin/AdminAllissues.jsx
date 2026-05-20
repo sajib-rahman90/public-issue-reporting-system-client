@@ -117,7 +117,9 @@ const AllIssues = () => {
 
   return (
     <div className="p-6">
-      <h2 className="text-2xl font-bold mb-6">All Issues</h2>
+      <h2 className="text-3xl text-center font-bold mb-8 md:text-4xl text-black">
+        All Issues
+      </h2>
 
       <div className="overflow-x-auto bg-white rounded-xl shadow">
         <table className="table w-full">

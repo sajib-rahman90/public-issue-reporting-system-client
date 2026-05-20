@@ -27,7 +27,10 @@ const AdminDashboard = () => {
 
   return (
     <div className="p-6 space-y-10">
-      {/* ================= CARDS ================= */}
+      {/* All cards section */}
+      <h2 className="text-3xl text-center font-bold mb-8 md:text-4xl text-black ">
+        Admin Dashboard
+      </h2>
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-6">
         <div className="bg-blue-500 text-white rounded-3xl p-6 shadow">
           <div className="flex justify-between">
@@ -80,9 +83,9 @@ const AdminDashboard = () => {
         </div>
       </div>
 
-      {/* ================= CHARTS ================= */}
+      {/* Charts section */}
       <div>
-        {/* PIE CHART */}
+        {/* chart */}
         <div className="bg-white p-5 rounded-3xl shadow">
           <h3 className="font-bold mb-5">Issue Overview</h3>
 
@@ -108,9 +111,9 @@ const AdminDashboard = () => {
         </div>
       </div>
 
-      {/* ================= LATEST SECTIONS ================= */}
+      {/*  Latest sectoin */}
       <div className="grid lg:grid-cols-3 gap-6">
-        {/* ISSUES */}
+        {/* Issues */}
         <div className="bg-white p-5 rounded-3xl shadow">
           <h2 className="font-bold mb-4">Latest Issues</h2>
 
@@ -122,7 +125,7 @@ const AdminDashboard = () => {
           ))}
         </div>
 
-        {/* PAYMENTS */}
+        {/* Payments */}
         <div className="bg-white p-5 rounded-3xl shadow">
           <h2 className="font-bold mb-4">Latest Payments</h2>
 
@@ -134,7 +137,7 @@ const AdminDashboard = () => {
           ))}
         </div>
 
-        {/* USERS */}
+        {/* Users */}
         <div className="bg-white p-5 rounded-3xl shadow">
           <h2 className="font-bold mb-4">New Users</h2>
 

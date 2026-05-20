@@ -18,7 +18,7 @@ const Navber = () => {
 
   return (
     <div>
-      <div className="navbar bg-base-100 shadow-sm">
+      <div className="navbar bg-blue-100 shadow-sm">
         <div className="navbar-start">
           <div className="dropdown z-9">
             <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
@@ -40,13 +40,13 @@ const Navber = () => {
             </div>
             <ul
               tabIndex="-1"
-              className="menu menu-sm dropdown-content bg-base-100 rounded-box z-1 mt-3 w-52 p-2 shadow"
+              className="menu menu-sm dropdown-content bg-blue-100 rounded-box z-1 mt-3 w-52 p-2 shadow"
             >
               <li>
                 <NavLink
                   className={({ isActive }) =>
                     isActive
-                      ? "text-md text-orange-500 font-semibold"
+                      ? "text-md text-blue-500 font-semibold"
                       : "text-md font-semibold"
                   }
                   to={"/"}
@@ -59,7 +59,7 @@ const Navber = () => {
                 <NavLink
                   className={({ isActive }) =>
                     isActive
-                      ? "text-md text-orange-500 font-semibold"
+                      ? "text-md text-blue-500 font-semibold"
                       : "text-md font-semibold"
                   }
                   to={"/all-issues"}
@@ -71,12 +71,12 @@ const Navber = () => {
                 <NavLink
                   className={({ isActive }) =>
                     isActive
-                      ? "text-md text-orange-500 font-semibold"
+                      ? "text-md text-blue-500 font-semibold"
                       : "text-md font-semibold"
                   }
-                  to={"/"}
+                  to={"/report-issues"}
                 >
-                  Home
+                  Report Issue
                 </NavLink>
               </li>
             </ul>
@@ -93,7 +93,7 @@ const Navber = () => {
               <NavLink
                 className={({ isActive }) =>
                   isActive
-                    ? "text-[16px] text-orange-500 font-semibold"
+                    ? "text-[16px] text-blue-500 font-semibold"
                     : "text-[16px] font-semibold"
                 }
                 to={"/"}
@@ -106,7 +106,7 @@ const Navber = () => {
               <NavLink
                 className={({ isActive }) =>
                   isActive
-                    ? "text-[16px] text-orange-500 font-semibold"
+                    ? "text-[16px] text-blue-500 font-semibold"
                     : "text-[16px] font-semibold"
                 }
                 to={"/all-issues"}
@@ -118,7 +118,7 @@ const Navber = () => {
               <NavLink
                 className={({ isActive }) =>
                   isActive
-                    ? "text-[16px] text-orange-500 font-semibold"
+                    ? "text-[16px] text-blue-500 font-semibold"
                     : "text-[16px] font-semibold"
                 }
                 to={"/report-issues"}
@@ -161,7 +161,7 @@ const Navber = () => {
                   <NavLink
                     className={({ isActive }) =>
                       isActive
-                        ? "text-md text-orange-500 font-semibold"
+                        ? "text-md text-blue-500 font-semibold"
                         : "text-md font-semibold text-gray-800"
                     }
                     to={"/dashboard"}
@@ -173,7 +173,7 @@ const Navber = () => {
                 <li>
                   <button
                     onClick={handleLogout}
-                    className="btn rounded-lg mt-1.5 btn-sm bg-linear-to-r from-orange-400 to-orange-500 text-white py-2.5 font-medium hover:from-orange-500 hover:to-orange-600 hover:shadow-lg hover:-translate-y-0.5 transition-all duration-300 "
+                    className="btn rounded-lg mt-1.5 btn-sm bg-linear-to-r from-blue-400 to-blue-500 text-white py-2.5 font-medium hover:from-blue-500 hover:to-blue-600 hover:shadow-lg hover:-translate-y-0.5 transition-all duration-300 "
                   >
                     Logout
                   </button>

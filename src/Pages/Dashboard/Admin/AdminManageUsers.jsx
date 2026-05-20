@@ -60,7 +60,9 @@ const AdminManageUsers = () => {
 
   return (
     <div className="p-4 md:p-8">
-      <h2 className="text-2xl font-bold mb-6">Manage Users</h2>
+      <h2 className="text-3xl text-center font-bold mb-8 md:text-4xl text-black">
+        Manage Users
+      </h2>
 
       <div className="overflow-x-auto bg-white rounded-xl shadow">
         <table className="table w-full">

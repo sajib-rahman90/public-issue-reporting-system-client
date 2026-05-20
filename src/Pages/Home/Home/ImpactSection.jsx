@@ -28,7 +28,7 @@ const ImpactSection = () => {
             transition={{ duration: 0.5, delay: 0.1 }}
             className="bg-white/10 backdrop-blur-md border border-white/10 rounded-2xl p-6 text-center hover:bg-white/20 transition"
           >
-            <div className="text-3xl text-orange-400 flex justify-center mb-3">
+            <div className="text-3xl text-blue-600 flex justify-center mb-3">
               <FaUsers />
             </div>
             <h3 className="text-2xl font-bold">5,000+</h3>
@@ -43,7 +43,7 @@ const ImpactSection = () => {
             transition={{ duration: 0.5, delay: 0.2 }}
             className="bg-white/10 backdrop-blur-md border border-white/10 rounded-2xl p-6 text-center hover:bg-white/20 transition"
           >
-            <div className="text-3xl text-orange-400 flex justify-center mb-3">
+            <div className="text-3xl text-blue-600 flex justify-center mb-3">
               <FaCity />
             </div>
             <h3 className="text-2xl font-bold">12,000+</h3>
@@ -58,7 +58,7 @@ const ImpactSection = () => {
             transition={{ duration: 0.5, delay: 0.3 }}
             className="bg-white/10 backdrop-blur-md border border-white/10 rounded-2xl p-6 text-center hover:bg-white/20 transition"
           >
-            <div className="text-3xl text-orange-400 flex justify-center mb-3">
+            <div className="text-3xl text-blue-600 flex justify-center mb-3">
               <FaCheckCircle />
             </div>
             <h3 className="text-2xl font-bold">8,500+</h3>
@@ -73,7 +73,7 @@ const ImpactSection = () => {
             transition={{ duration: 0.5, delay: 0.4 }}
             className="bg-white/10 backdrop-blur-md border border-white/10 rounded-2xl p-6 text-center hover:bg-white/20 transition"
           >
-            <div className="text-3xl text-orange-400 flex justify-center mb-3">
+            <div className="text-3xl text-blue-600 flex justify-center mb-3">
               <FaChartLine />
             </div>
             <h3 className="text-2xl font-bold">92%</h3>

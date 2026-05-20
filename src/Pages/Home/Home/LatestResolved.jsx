@@ -24,11 +24,11 @@ const LatestResolved = () => {
         {/* Header */}
 
         <div className="text-center mb-12">
-          <h2 className="text-4xl font-bold text-slate-800">
+          <h2 className="text-3xl md:text-4xl font-bold text-black">
             Latest Resolved Issues
           </h2>
 
-          <p className="mt-3 text-slate-500">
+          <p className="mt-3 text-base md:text-lg text-gray-700 leading-relaxed">
             Recently resolved community issues
           </p>
         </div>

@@ -111,7 +111,7 @@ const Banner = () => {
                 >
                   <Link
                     to="/report-issues"
-                    className="bg-orange-500 hover:bg-orange-600 px-4 py-2 sm:px-6 sm:py-3 rounded-lg sm:rounded-xl flex items-center justify-center gap-2 transition text-xs sm:text-sm md:text-base"
+                    className="bg-blue-500 hover:bg-blue-600 px-4 py-2 sm:px-6 sm:py-3 rounded-lg sm:rounded-xl flex items-center justify-center gap-2 transition text-xs sm:text-sm md:text-base"
                   >
                     Report Issue
                     <FaArrowRight className="text-xs sm:text-sm" />

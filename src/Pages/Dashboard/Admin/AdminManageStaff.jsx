@@ -124,9 +124,11 @@ const AdminManageStaff = () => {
     <div className="p-4 md:p-8">
       <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4 mb-6">
         <div>
-          <h2 className="text-3xl font-bold">Manage Staff</h2>
+          <h2 className="text-3xl  font-bold mb-4 md:text-4xl text-black">
+            Manage Staff
+          </h2>
 
-          <p className="text-gray-500 mt-1">Total Staff: {staffs.length}</p>
+          <p className="text-gray-600 mt-1">Total Staff: {staffs.length}</p>
         </div>
 
         <button

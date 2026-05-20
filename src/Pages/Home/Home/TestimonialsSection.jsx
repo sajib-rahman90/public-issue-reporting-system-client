@@ -15,7 +15,7 @@ const TestimonialsSection = () => {
           <h2 className="text-3xl md:text-4xl font-bold">
             Trusted by the Community
           </h2>
-          <p className="text-gray-400 mt-3">
+          <p className="text-gray-500 mt-3 text-base md:text-lg leading-relaxed">
             Real feedback from people using the platform
           </p>
         </motion.div>
@@ -41,7 +41,7 @@ const TestimonialsSection = () => {
                 alt="user"
                 className="w-10 h-10 rounded-full border border-white/20"
               />
-              <div className="text-orange-400 font-semibold">Rahim Uddin</div>
+              <div className="text-blue-700 font-semibold">Rahim Uddin</div>
             </div>
           </motion.div>
 
@@ -64,7 +64,7 @@ const TestimonialsSection = () => {
                 alt="user"
                 className="w-10 h-10 rounded-full border border-white/20"
               />
-              <div className="text-orange-400 font-semibold">Ayesha Khan</div>
+              <div className="text-blue-700 font-semibold">Ayesha Khan</div>
             </div>
           </motion.div>
 
@@ -87,9 +87,7 @@ const TestimonialsSection = () => {
                 alt="user"
                 className="w-10 h-10 rounded-full border border-white/20"
               />
-              <div className="text-orange-400 font-semibold">
-                Shamima Hossain
-              </div>
+              <div className="text-blue-700 font-semibold">Shamima Hossain</div>
             </div>
           </motion.div>
         </div>

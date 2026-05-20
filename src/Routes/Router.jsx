@@ -26,6 +26,10 @@ import AdminDashboard from "../Pages/Dashboard/Admin/AdminDashboard";
 import AdminPayments from "../Pages/Dashboard/Admin/AdminPayments";
 import BoostPaymentFail from "../Pages/Payment/BoostPaymentFail";
 import PremiumePymentFail from "../Pages/Payment/PremiumePymentFail";
+import CitizenRoutes from "./CitizenRoutes";
+import AdminRoutes from "./AdminRoutes";
+import Dashboards from "../Pages/Dashboard/Dashboards";
+import StaffRoutes from "./StaffRoutes";
 
 export const router = createBrowserRouter([
   {
@@ -76,10 +80,20 @@ export const router = createBrowserRouter([
     ),
     children: [
       {
+        index: true,
+        element: (
+          <PrivateRoute>
+            <Dashboards />
+          </PrivateRoute>
+        ),
+      },
+      {
         path: "user-report-issue",
         element: (
           <PrivateRoute>
-            <UserReportIssue />
+            <CitizenRoutes>
+              <UserReportIssue />
+            </CitizenRoutes>
           </PrivateRoute>
         ),
       },
@@ -87,7 +101,9 @@ export const router = createBrowserRouter([
         path: "my-issues",
         element: (
           <PrivateRoute>
-            <MyIssues />
+            <CitizenRoutes>
+              <MyIssues />
+            </CitizenRoutes>
           </PrivateRoute>
         ),
       },
@@ -95,7 +111,9 @@ export const router = createBrowserRouter([
         path: "citizen-stats",
         element: (
           <PrivateRoute>
-            <CitizenDashboard />
+            <CitizenRoutes>
+              <CitizenDashboard />
+            </CitizenRoutes>
           </PrivateRoute>
         ),
       },
@@ -103,7 +121,9 @@ export const router = createBrowserRouter([
         path: "citizen-profile",
         element: (
           <PrivateRoute>
-            <CitizenProfile />
+            <CitizenRoutes>
+              <CitizenProfile />
+            </CitizenRoutes>
           </PrivateRoute>
         ),
       },
@@ -111,7 +131,9 @@ export const router = createBrowserRouter([
         path: "admin-dashboard-stats",
         element: (
           <PrivateRoute>
-            <AdminDashboard />
+            <AdminRoutes>
+              <AdminDashboard />
+            </AdminRoutes>
           </PrivateRoute>
         ),
       },
@@ -119,7 +141,9 @@ export const router = createBrowserRouter([
         path: "admin-all-issues",
         element: (
           <PrivateRoute>
-            <AdminAllissues />
+            <AdminRoutes>
+              <AdminAllissues />
+            </AdminRoutes>
           </PrivateRoute>
         ),
       },
@@ -127,19 +151,29 @@ export const router = createBrowserRouter([
         path: "admin-manage-users",
         element: (
           <PrivateRoute>
-            <AdminManageUsers />
+            <AdminRoutes>
+              <AdminManageUsers />
+            </AdminRoutes>
           </PrivateRoute>
         ),
       },
       {
         path: "admin-manage-staff",
-        element: <AdminManageStaff />,
+        element: (
+          <PrivateRoute>
+            <AdminRoutes>
+              <AdminManageStaff />
+            </AdminRoutes>
+          </PrivateRoute>
+        ),
       },
       {
         path: "admin-payments",
         element: (
           <PrivateRoute>
-            <AdminPayments />
+            <AdminRoutes>
+              <AdminPayments />
+            </AdminRoutes>
           </PrivateRoute>
         ),
       },
@@ -147,7 +181,9 @@ export const router = createBrowserRouter([
         path: "admin-profile",
         element: (
           <PrivateRoute>
-            <AdminProfile />
+            <AdminRoutes>
+              <AdminProfile />
+            </AdminRoutes>
           </PrivateRoute>
         ),
       },
@@ -155,7 +191,9 @@ export const router = createBrowserRouter([
         path: "staff-dashboard",
         element: (
           <PrivateRoute>
-            <StaffDashboard />
+            <StaffRoutes>
+              <StaffDashboard />
+            </StaffRoutes>
           </PrivateRoute>
         ),
       },
@@ -163,7 +201,9 @@ export const router = createBrowserRouter([
         path: "staff-profile",
         element: (
           <PrivateRoute>
-            <StaffProfile />
+            <StaffRoutes>
+              <StaffProfile />
+            </StaffRoutes>
           </PrivateRoute>
         ),
       },
@@ -171,7 +211,9 @@ export const router = createBrowserRouter([
         path: "staff-assigned-issues",
         element: (
           <PrivateRoute>
-            <StaffAssignedIssues />
+            <StaffRoutes>
+              <StaffAssignedIssues />
+            </StaffRoutes>
           </PrivateRoute>
         ),
       },

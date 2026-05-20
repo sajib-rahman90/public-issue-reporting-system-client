@@ -4,6 +4,7 @@ import { Link } from "react-router";
 import useAxiosSecure from "../../../../Hooks/useAxiosSecure";
 import { toast } from "react-toastify";
 import LoaddingSpinner from "../../../../Components/LoaddingSpinner";
+import useAuth from "../../../../Hooks/useAuth";
 
 const Allissues = () => {
   const [search, setSearch] = useState("");
@@ -11,12 +12,15 @@ const Allissues = () => {
   const [status, setStatus] = useState("");
   const [priority, setPriority] = useState("");
   const [page, setPage] = useState(1);
+  const { loading } = useAuth();
+  // console.log(user);
 
   const queryClient = useQueryClient();
   const axiosSecure = useAxiosSecure();
 
   const { data, isLoading } = useQuery({
     queryKey: ["issues", search, category, status, priority, page],
+    // enabled: !loading && !!user,
     queryFn: async () => {
       const res = await axiosSecure.get(
         `/issues?search=${search}&category=${category}&status=${status}&priority=${priority}&page=${page}`,
@@ -45,6 +49,10 @@ const Allissues = () => {
   const handleUpvote = (issueId) => {
     upvoteMutation.mutate(issueId);
   };
+
+  if (loading) {
+    return <LoaddingSpinner />;
+  }
 
   return (
     <div className="max-w-11/12 mx-auto sm:px-4 py-9">

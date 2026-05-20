@@ -3,7 +3,7 @@ import { motion } from "framer-motion";
 
 const CTASection = () => {
   return (
-    <section className="py-20 bg-linear-to-br from-orange-500 via-orange-600 to-amber-500 relative overflow-hidden">
+    <section className="py-20 bg-linear-to-br from-blue-500 via-blue-600 to-blue-500 relative overflow-hidden">
       {/* subtle glow background effect */}
       <div className="absolute inset-0 opacity-20">
         <div className="absolute w-72 h-72 bg-white rounded-full blur-3xl top-10 left-10"></div>
@@ -43,14 +43,14 @@ const CTASection = () => {
         >
           <Link
             to="/report-issues"
-            className="bg-white text-orange-500 px-5 sm:px-6 py-2 sm:py-3 rounded-lg sm:rounded-xl font-medium hover:bg-gray-100 transition text-sm sm:text-base"
+            className="bg-white text-blue-500 px-5 sm:px-6 py-2 sm:py-3 rounded-lg sm:rounded-xl font-medium hover:bg-gray-100 transition text-sm sm:text-base"
           >
             Report Now
           </Link>
 
           <Link
             to="/all-issues"
-            className="border border-white px-5 sm:px-6 py-2 sm:py-3 rounded-lg sm:rounded-xl hover:bg-white hover:text-orange-500 transition text-sm sm:text-base"
+            className="border border-white px-5 sm:px-6 py-2 sm:py-3 rounded-lg sm:rounded-xl hover:bg-white hover:text-blue-500 transition text-sm sm:text-base"
           >
             Explore Issues
           </Link>

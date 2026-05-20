@@ -13,10 +13,10 @@ const HowItWorks = () => {
           transition={{ duration: 0.6 }}
           className="text-center mb-16"
         >
-          <h2 className="text-3xl md:text-5xl font-extrabold text-gray-900">
+          <h2 className="text-3xl md:text-4xl font-bold text-black ">
             How It Works
           </h2>
-          <p className="mt-4 text-gray-600 max-w-2xl mx-auto leading-relaxed">
+          <p className="mt-3 text-base md:text-lg text-gray-700 leading-relaxed">
             A simple and transparent workflow that explains how issues move from
             reporting to resolution.
           </p>

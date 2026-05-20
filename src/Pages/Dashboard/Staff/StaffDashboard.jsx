@@ -31,7 +31,9 @@ const StaffDashboard = () => {
 
   return (
     <div className="p-4 md:p-8">
-      <h2 className="text-2xl font-bold mb-6">Staff Dashboard Overview</h2>
+      <h2 className="text-3xl text-center font-bold mb-8 md:text-4xl text-black">
+        Staff Dashboard Overview
+      </h2>
 
       {/* CARDS */}
       <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
@@ -53,7 +55,7 @@ const StaffDashboard = () => {
 
       {/* CHART */}
       <div className="mt-10 bg-white p-6 rounded-xl shadow">
-        <h3 className="text-lg font-bold mb-4">Issue Statistics</h3>
+        <h3 className="text-lg font-bold text-center mb-4">Issue Statistics</h3>
 
         <div style={{ width: "100%", height: 300 }}>
           <ResponsiveContainer>

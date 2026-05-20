@@ -70,7 +70,9 @@ const StaffAssignedIssues = () => {
   return (
     <div className="p-4 md:p-8">
       {/* HEADER */}
-      <h2 className="text-2xl font-bold mb-4">Assigned Issues</h2>
+      <h2 className="text-3xl text-center font-bold mb-8 md:text-4xl text-black">
+        Assigned Issues
+      </h2>
 
       {/* FILTERS */}
       <div className="flex gap-3 mb-4 flex-wrap">

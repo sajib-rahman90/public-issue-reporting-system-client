@@ -40,7 +40,9 @@ const CitizenDashboard = () => {
 
   return (
     <div className="p-6">
-      <h2 className="text-3xl font-bold mb-8">Citizen Dashboard</h2>
+      <h2 className="text-3xl text-center font-bold mb-8 md:text-4xl text-black">
+        Citizen Dashboard
+      </h2>
 
       {/* Stats Cards */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-5">
@@ -75,7 +77,9 @@ const CitizenDashboard = () => {
       </div>
 
       <div className="bg-white shadow rounded-xl p-6 mt-10">
-        <h3 className="text-2xl font-bold mb-5">Issue Status Overview</h3>
+        <h3 className="text-2xl text-center font-bold mb-5">
+          Issue Status Overview
+        </h3>
 
         <div className="w-full md:w-8/12 h-87.5 md:h-112.5 mx-auto">
           {chartData.length > 0 && (
