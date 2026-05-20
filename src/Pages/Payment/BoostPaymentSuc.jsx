@@ -1,20 +1,24 @@
 import { Link, useSearchParams } from "react-router";
 import useAxiosSecure from "../../Hooks/useAxiosSecure";
-import { useEffect } from "react";
+import { useEffect, useRef } from "react";
 
 const BoostPaymentSuc = () => {
   const [searchParams] = useSearchParams();
   const sessionId = searchParams.get("session_id");
   const axiosSecure = useAxiosSecure();
+  const called = useRef(false);
 
   useEffect(() => {
+    if (!sessionId || called.current) return;
+    called.current = true;
+
     const confirmPayment = async () => {
       try {
         const res = await axiosSecure.post("/confirm-boost-payment", {
           sessionId,
         });
 
-        console.log(res.data);
+        // console.log(res.data);
       } catch (error) {
         console.log(error);
       }
@@ -23,7 +27,7 @@ const BoostPaymentSuc = () => {
     if (sessionId) {
       confirmPayment();
     }
-  }, [sessionId, axiosSecure]);
+  }, [sessionId]);
 
   return (
     <div className="min-h-screen flex items-center justify-center">

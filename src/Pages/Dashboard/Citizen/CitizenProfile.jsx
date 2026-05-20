@@ -141,7 +141,7 @@ const CitizenProfile = () => {
               className="w-full border p-4 rounded-xl"
             />
 
-            <button className="bg-green-600 hover:bg-green-700 text-white px-6 py-3 rounded-xl">
+            <button className="bg-blue-500 hover:bg-blue-600 text-white px-6 py-3 rounded-xl">
               Update Profile
             </button>
           </form>

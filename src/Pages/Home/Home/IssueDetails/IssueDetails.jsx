@@ -31,7 +31,7 @@ const IssueDetails = () => {
     queryKey: ["issue-timeline", id],
     queryFn: async () => {
       const result = await axiosSecure.get(`/issue-tracking/${id}`);
-      console.log(result.data);
+      // console.log(result.data);
       return result.data;
     },
   });

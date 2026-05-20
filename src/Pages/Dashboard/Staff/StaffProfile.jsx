@@ -70,7 +70,7 @@ const StaffProfile = () => {
                 setIsEdit(!isEdit);
                 reset(staff);
               }}
-              className="mt-4 btn btn-primary btn-sm"
+              className="mt-4 text-white btn bg-blue-500 hover:bg-blue-600 btn-sm"
             >
               {isEdit ? "Cancel Edit" : "Edit Profile"}
             </button>

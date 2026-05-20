@@ -69,7 +69,7 @@ const AdminProfile = () => {
                 setIsEdit(!isEdit);
                 reset(admin);
               }}
-              className="mt-4 btn btn-primary btn-sm"
+              className="mt-4 btn text-white bg-blue-500 hover:bg-blue-600 btn-sm"
             >
               {isEdit ? "Cancel Edit" : "Edit Profile"}
             </button>
@@ -90,12 +90,6 @@ const AdminProfile = () => {
             {errors.name?.type === "required" && (
               <p className="text-red-400">Name is required</p>
             )}
-
-            <input
-              {...register("phone")}
-              placeholder="Phone"
-              className="input input-bordered w-full"
-            />
 
             <input
               {...register("photo")}
