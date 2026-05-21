@@ -22,7 +22,6 @@ const TestimonialsSection = () => {
 
         {/* Cards */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-          {/* Card 1 */}
           <motion.div
             initial={{ opacity: 0, y: 40 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -45,7 +44,6 @@ const TestimonialsSection = () => {
             </div>
           </motion.div>
 
-          {/* Card 2 */}
           <motion.div
             initial={{ opacity: 0, y: 40 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -68,7 +66,6 @@ const TestimonialsSection = () => {
             </div>
           </motion.div>
 
-          {/* Card 3 */}
           <motion.div
             initial={{ opacity: 0, y: 40 }}
             whileInView={{ opacity: 1, y: 0 }}

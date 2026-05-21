@@ -30,6 +30,7 @@ import CitizenRoutes from "./CitizenRoutes";
 import AdminRoutes from "./AdminRoutes";
 import Dashboards from "../Pages/Dashboard/Dashboards";
 import StaffRoutes from "./StaffRoutes";
+import AboutUs from "../Pages/About/AboutUs";
 
 export const router = createBrowserRouter([
   {
@@ -44,6 +45,10 @@ export const router = createBrowserRouter([
       {
         path: "/all-issues",
         element: <Allissues></Allissues>,
+      },
+      {
+        path: "/about-us",
+        element: <AboutUs />,
       },
       {
         path: "/report-issues",

@@ -34,53 +34,59 @@ const ReportIssueForm = () => {
   }, [user, axiosSecure]);
 
   const handleReportIssue = async (data) => {
-    if (!userInfo?.isPremium && reportedCount >= 3) {
-      toast.error("Free users can report maximum 3 issues");
-      navigate("/dashboard/profile");
-      return;
-    }
-    // console.log(data);
-    const issueImage = data.photo[0];
-    const formData = new FormData();
-    formData.append("image", issueImage);
-    const image_API_URL = `https://api.imgbb.com/1/upload?key=${import.meta.env.VITE_image_host_key}`;
-    const res = await axios.post(image_API_URL, formData);
-    // console.log("after image upload", res.data);
-    const imageUrl = res.data.data.display_url;
-    const issueInfo = {
-      title: data.issueTitle,
-      category: data.category,
-      location: data.location,
-      description: data.description,
-      image: imageUrl,
-      status: "Pending",
-      priority: "Normal",
-      upvote: 0,
-      reporterEmail: user.email,
-      reporterName: user.displayName,
-      createdAt: new Date(),
-    };
-
-    // const issueRes = await axiosSecure.post("/issues", issueInfo);
-    // toast.success("Added Report in DB succesfully.");
-
-    // console.log("after saving issue", issueRes.data);
-
-    const issueRes = await axiosSecure.post("/issues", issueInfo);
-
-    if (issueRes.data.insertedId) {
-      const trackingInfo = {
-        issueId: issueRes.data.insertedId,
+    try {
+      if (!userInfo?.isPremium && reportedCount >= 3) {
+        toast.error("Free users can report maximum 3 issues");
+        navigate("/dashboard/profile");
+        return;
+      }
+      // console.log(data);
+      const issueImage = data.photo[0];
+      const formData = new FormData();
+      formData.append("image", issueImage);
+      const image_API_URL = `https://api.imgbb.com/1/upload?key=${import.meta.env.VITE_image_host_key}`;
+      const res = await axios.post(image_API_URL, formData);
+      // console.log("after image upload", res.data);
+      const imageUrl = res.data.data.display_url;
+      const issueInfo = {
+        title: data.issueTitle,
+        category: data.category,
+        location: data.location,
+        description: data.description,
+        image: imageUrl,
         status: "Pending",
-        message: "Issue reported successfully",
-        updatedBy: "Citizen",
-        email: user.email,
-        time: new Date(),
+        priority: "Normal",
+        upvote: 0,
+        reporterEmail: user.email,
+        reporterName: user.displayName,
+        createdAt: new Date(),
       };
 
-      await axiosSecure.post("/issue-tracking", trackingInfo);
-      toast.success("Issue reported successfully");
-      navigate("/dashboard/my-issues");
+      // const issueRes = await axiosSecure.post("/issues", issueInfo);
+      // toast.success("Added Report in DB succesfully.");
+
+      // console.log("after saving issue", issueRes.data);
+
+      const issueRes = await axiosSecure.post("/issues", issueInfo);
+
+      if (issueRes.data.insertedId) {
+        const trackingInfo = {
+          issueId: issueRes.data.insertedId,
+          status: "Reported",
+          message: `Issue reported by ${user.email} successfully`,
+          updatedBy: user.email,
+          name: user.displayName,
+          date: new Date(),
+        };
+
+        await axiosSecure.post("/issue-tracking", trackingInfo);
+        toast.success("Issue reported successfully");
+        toast.error();
+        navigate("/dashboard/my-issues");
+      }
+    } catch (error) {
+      console.log(error);
+      toast.error(error?.response?.data?.message || "Something went wrong");
     }
   };
   return (

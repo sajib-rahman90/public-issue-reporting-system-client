@@ -79,6 +79,18 @@ const Navber = () => {
                   Report Issue
                 </NavLink>
               </li>
+              <li>
+                <NavLink
+                  className={({ isActive }) =>
+                    isActive
+                      ? "text-md text-blue-500 font-semibold"
+                      : "text-md font-semibold"
+                  }
+                  to={"/about-us"}
+                >
+                  About Us
+                </NavLink>
+              </li>
             </ul>
           </div>
           <div className="flex items-center">
@@ -124,6 +136,18 @@ const Navber = () => {
                 to={"/report-issues"}
               >
                 Report Issue
+              </NavLink>
+            </li>
+            <li>
+              <NavLink
+                className={({ isActive }) =>
+                  isActive
+                    ? "text-[16px] text-blue-500 font-semibold"
+                    : "text-[16px] font-semibold"
+                }
+                to={"/about-us"}
+              >
+                About Us
               </NavLink>
             </li>
           </ul>
