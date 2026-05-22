@@ -42,7 +42,12 @@ const Allissues = () => {
     },
 
     onError: (error) => {
-      toast.error(error?.response?.data?.error || "Upvote failed");
+      toast.error(
+        error?.response?.data?.message ||
+          error?.response?.data?.error ||
+          error?.message ||
+          "Failed to update issue",
+      );
     },
   });
 

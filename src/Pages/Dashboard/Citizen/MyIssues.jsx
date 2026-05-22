@@ -4,6 +4,7 @@ import useAxiosSecure from "../../../Hooks/useAxiosSecure";
 import { useState } from "react";
 import Swal from "sweetalert2";
 import { Link } from "react-router";
+import { toast } from "react-toastify";
 
 const MyIssues = () => {
   const { user, loading } = useAuth();
@@ -58,14 +59,16 @@ const MyIssues = () => {
         queryKey: ["myIssues"],
       });
 
-      Swal.fire({
-        icon: "success",
-        title: "Issue Updated Successfully",
-        timer: 1500,
-        showConfirmButton: false,
-      });
-
+      toast.success("Issue Updated Successfully");
       document.getElementById("update_modal").close();
+    },
+
+    onError: (error) => {
+      toast.error(
+        error?.response?.data?.message ||
+          error?.message ||
+          "Failed to update issue",
+      );
     },
   });
 

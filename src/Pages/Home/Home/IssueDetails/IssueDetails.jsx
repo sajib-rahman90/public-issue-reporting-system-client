@@ -56,7 +56,9 @@ const IssueDetails = () => {
       setShowModal(false);
     },
     onError: (error) => {
-      toast.error(error?.res?.data?.message || "Update failed");
+      toast.error(
+        error?.response?.data?.message || error?.message || "Update failed",
+      );
     },
   });
 
@@ -112,7 +114,9 @@ const IssueDetails = () => {
       );
       window.location.href = res.data.url;
     } catch (err) {
-      toast.error(err.response?.data?.error || "Boost failed");
+      toast.error(
+        err?.response?.data?.message || err?.message || "Boost failed",
+      );
     }
   };
 
