@@ -95,7 +95,15 @@ const Navber = () => {
           </div>
           <div className="flex items-center">
             <Link to="/" className="flex items-center gap-2 group">
-              <span className="text-xl font-semibold ">Public Issues</span>
+              <img
+                className="w-10 h-10 object-contain transition-transform duration-300 group-hover:scale-110"
+                src="/City resolve-logo.png"
+                alt="City Resolve Logo"
+              />
+
+              <span className="text-xl font-semibold text-blue-500 hover:text-blue-700">
+                CityResolve
+              </span>
             </Link>
           </div>
         </div>
@@ -207,7 +215,7 @@ const Navber = () => {
           ) : (
             <Link
               to={"/login"}
-              className="btn btn-sm rounded-lg bg-linear-to-r from-orange-400 to-orange-500 text-white py-2.5 font-medium hover:from-orange-500 hover:to-orange-600 hover:shadow-lg hover:-translate-y-0.5 transition-all duration-300 text-center"
+              className="btn btn-sm rounded-lg text-white bg-blue-600 hover:bg-blue-700 py-2.5 font-medium hover:-translate-y-0.5 duration-300  transition  "
             >
               {" "}
               Login
