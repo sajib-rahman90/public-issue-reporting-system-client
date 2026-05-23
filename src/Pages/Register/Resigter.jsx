@@ -80,7 +80,7 @@ const Resigter = () => {
   const handleGoogle = () => {
     signInWithGoogleFunc()
       .then((res) => {
-        console.log(res);
+        // console.log(res);
         toast.success("Google Sign in Successfull. ");
 
         const userInfo = {
@@ -93,7 +93,7 @@ const Resigter = () => {
         };
 
         axiosSecure.post("/users", userInfo).then((res) => {
-          console.log("user data has been stored", res.data);
+          // console.log("user data has been stored", res.data);
           navigate(from, { replace: true });
         });
       })
