@@ -4,11 +4,12 @@ import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { toast } from "react-toastify";
 import LoaddingSpinner from "../../../Components/LoaddingSpinner";
+import useAuth from "../../../Hooks/useAuth";
 
 const StaffProfile = () => {
   const axiosSecure = useAxiosSecure();
   const queryClient = useQueryClient();
-
+  const { updateUserProfileFunc } = useAuth();
   const [isEdit, setIsEdit] = useState(false);
 
   const { data: staff = {}, isLoading } = useQuery({
@@ -30,11 +31,18 @@ const StaffProfile = () => {
 
   const updateMutation = useMutation({
     mutationFn: async (data) => {
-      return await axiosSecure.put("/staff/profile", data);
+      const res = await axiosSecure.put("/staff/profile", data);
+      await updateUserProfileFunc({
+        displayName: data.name,
+        photoURL: data.photo,
+      });
+      return res.data;
     },
     onSuccess: () => {
       toast.success("Profile updated successfully");
-      queryClient.invalidateQueries(["staffProfile"]);
+      queryClient.invalidateQueries({
+        queryKey: ["staffProfile"],
+      });
       setIsEdit(false);
     },
     onError: () => {

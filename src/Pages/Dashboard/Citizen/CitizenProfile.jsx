@@ -5,7 +5,7 @@ import { toast } from "react-toastify";
 import LoaddingSpinner from "../../../Components/LoaddingSpinner";
 
 const CitizenProfile = () => {
-  const { user } = useAuth();
+  const { user, updateUserProfileFunc } = useAuth();
   const axiosSecure = useAxiosSecure();
   const [userInfo, setUserInfo] = useState({});
   const [loading, setLoading] = useState(true);
@@ -24,11 +24,38 @@ const CitizenProfile = () => {
         });
     }
   }, [user, axiosSecure]);
+  //   e.preventDefault();
+  //   const name = e.target.name.value;
+  //   const photo = e.target.photo.value;
+  //   const userData = {
+  //     name,
+  //     photo,
+  //   };
+
+  //   try {
+  //     const res = await axiosSecure.patch(
+  //       `/users/update/${user.email}`,
+  //       userData,
+  //     );
+
+  //     if (res.data.modifiedCount > 0) {
+  //       setUserInfo({
+  //         ...userInfo,
+  //         name,
+  //         photo,
+  //       });
+  //       toast.success("Profile Updated");
+  //     }
+  //   } catch (error) {
+  //     console.log(error);
+  //   }
+  // };
 
   const handleUpdateProfile = async (e) => {
     e.preventDefault();
-    const name = e.target.name.value;
-    const photo = e.target.photo.value;
+    const form = e.target;
+    const name = form.name.value;
+    const photo = form.photo.value;
     const userData = {
       name,
       photo,
@@ -41,15 +68,20 @@ const CitizenProfile = () => {
       );
 
       if (res.data.modifiedCount > 0) {
-        setUserInfo({
-          ...userInfo,
+        await updateUserProfileFunc({
+          displayName: name,
+          photoURL: photo,
+        });
+        setUserInfo((prev) => ({
+          ...prev,
           name,
           photo,
-        });
-        toast.success("Profile Updated");
+        }));
+        toast.success("Profile Updated Successfully");
       }
     } catch (error) {
       console.log(error);
+      toast.error("Profile Update Failed");
     }
   };
 
@@ -79,14 +111,17 @@ const CitizenProfile = () => {
       <div className="bg-white shadow-xl rounded-3xl p-8">
         <div className="flex flex-col md:flex-row items-center gap-8">
           <img
-            src={userInfo?.photo}
+            src={
+              userInfo?.photo ||
+              "https://www.svgrepo.com/show/384670/account-avatar-profile-user.svg"
+            }
             alt=""
             className="w-40 h-40 rounded-full object-cover border-4 border-blue-500"
           />
 
           <div className="space-y-3">
             <h2 className="text-3xl font-bold">
-              {userInfo?.name}
+              {userInfo?.name || user?.displayName}
 
               {userInfo?.isPremium && (
                 <span className="ml-3 bg-yellow-400 text-black text-sm px-3 py-1 rounded-full">
@@ -100,7 +135,7 @@ const CitizenProfile = () => {
             <p>
               Role:
               <span className="font-semibold ml-2 capitalize">
-                {userInfo?.role}
+                {userInfo?.role || "citizen"}
               </span>
             </p>
 

@@ -4,11 +4,13 @@ import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { toast } from "react-toastify";
 import LoaddingSpinner from "../../../Components/LoaddingSpinner";
+import useAuth from "../../../Hooks/useAuth";
 
 const AdminProfile = () => {
   const axiosSecure = useAxiosSecure();
   const queryClient = useQueryClient();
   const [isEdit, setIsEdit] = useState(false);
+  const { updateUserProfileFunc } = useAuth();
 
   const { data: admin = {}, isLoading } = useQuery({
     queryKey: ["adminProfile"],
@@ -29,14 +31,25 @@ const AdminProfile = () => {
 
   const updateMutation = useMutation({
     mutationFn: async (data) => {
-      return await axiosSecure.put("/admin/profile", data);
+      const res = await axiosSecure.put("/admin/profile", data);
+      await updateUserProfileFunc({
+        displayName: data.name,
+        photoURL: data.photo,
+      });
+      return res.data;
     },
+
     onSuccess: () => {
       toast.success("Profile updated successfully");
-      queryClient.invalidateQueries(["adminProfile"]);
+      // instant profile page update
+      queryClient.invalidateQueries({
+        queryKey: ["adminProfile"],
+      });
       setIsEdit(false);
     },
-    onError: () => {
+
+    onError: (error) => {
+      console.log(error);
       toast.error("Update failed");
     },
   });
