@@ -91,7 +91,10 @@ const DashboardLayout = () => {
                 <li>
                   <NavLink
                     to={"/dashboard/citizen-stats"}
-                    className="is-drawer-close:tooltip is-drawer-close:tooltip-right"
+                    className={({ isActive }) =>
+                      `${isActive ? "text-blue-500 font-semibold" : ""}
+              is-drawer-close:tooltip is-drawer-close:tooltip-right`
+                    }
                     data-tip="citizen-stats"
                   >
                     <MdDashboardCustomize />
@@ -104,7 +107,10 @@ const DashboardLayout = () => {
                 <li>
                   <NavLink
                     to={"/dashboard/user-report-issue"}
-                    className="is-drawer-close:tooltip is-drawer-close:tooltip-right"
+                    className={({ isActive }) =>
+                      `${isActive ? "text-blue-500 font-semibold" : ""}
+              is-drawer-close:tooltip is-drawer-close:tooltip-right`
+                    }
                     data-tip="User Report Issue"
                   >
                     <MdOutlineReport />
@@ -117,7 +123,10 @@ const DashboardLayout = () => {
                 <li>
                   <NavLink
                     to={"/dashboard/my-issues"}
-                    className="is-drawer-close:tooltip is-drawer-close:tooltip-right"
+                    className={({ isActive }) =>
+                      `${isActive ? "text-blue-500 font-semibold" : ""}
+              is-drawer-close:tooltip is-drawer-close:tooltip-right`
+                    }
                     data-tip="My Issues"
                   >
                     <MdAssignmentLate />
@@ -128,7 +137,10 @@ const DashboardLayout = () => {
                 <li>
                   <NavLink
                     to={"/dashboard/citizen-profile"}
-                    className="is-drawer-close:tooltip is-drawer-close:tooltip-right"
+                    className={({ isActive }) =>
+                      `${isActive ? "text-blue-500 font-semibold" : ""}
+              is-drawer-close:tooltip is-drawer-close:tooltip-right`
+                    }
                     data-tip="My Profile"
                   >
                     <ImProfile />
@@ -143,7 +155,10 @@ const DashboardLayout = () => {
                 <li>
                   <NavLink
                     to={"/dashboard/admin-dashboard-stats"}
-                    className="is-drawer-close:tooltip is-drawer-close:tooltip-right"
+                    className={({ isActive }) =>
+                      `${isActive ? "text-blue-500 font-semibold" : ""}
+              is-drawer-close:tooltip is-drawer-close:tooltip-right`
+                    }
                     data-tip="Admin Dashboard"
                   >
                     <MdDashboard />
@@ -152,10 +167,14 @@ const DashboardLayout = () => {
                     </span>
                   </NavLink>
                 </li>
+
                 <li>
                   <NavLink
                     to={"/dashboard/admin-all-issues"}
-                    className="is-drawer-close:tooltip is-drawer-close:tooltip-right"
+                    className={({ isActive }) =>
+                      `${isActive ? "text-blue-500 font-semibold" : ""}
+              is-drawer-close:tooltip is-drawer-close:tooltip-right`
+                    }
                     data-tip="All Issues"
                   >
                     <MdReportGmailerrorred />
@@ -166,7 +185,10 @@ const DashboardLayout = () => {
                 <li>
                   <NavLink
                     to={"/dashboard/admin-manage-users"}
-                    className="is-drawer-close:tooltip is-drawer-close:tooltip-right"
+                    className={({ isActive }) =>
+                      `${isActive ? "text-blue-500 font-semibold" : ""}
+              is-drawer-close:tooltip is-drawer-close:tooltip-right`
+                    }
                     data-tip="Manage Users"
                   >
                     <FaUsers />
@@ -177,7 +199,10 @@ const DashboardLayout = () => {
                 <li>
                   <NavLink
                     to={"/dashboard/admin-manage-staff"}
-                    className="is-drawer-close:tooltip is-drawer-close:tooltip-right"
+                    className={({ isActive }) =>
+                      `${isActive ? "text-blue-500 font-semibold" : ""}
+              is-drawer-close:tooltip is-drawer-close:tooltip-right`
+                    }
                     data-tip="Manages Staff"
                   >
                     <GrUserWorker />
@@ -188,7 +213,10 @@ const DashboardLayout = () => {
                 <li>
                   <NavLink
                     to={"/dashboard/admin-payments"}
-                    className="is-drawer-close:tooltip is-drawer-close:tooltip-right"
+                    className={({ isActive }) =>
+                      `${isActive ? "text-blue-500 font-semibold" : ""}
+              is-drawer-close:tooltip is-drawer-close:tooltip-right`
+                    }
                     data-tip="Admin Payments"
                   >
                     <MdOutlinePayments />
@@ -199,7 +227,10 @@ const DashboardLayout = () => {
                 <li>
                   <NavLink
                     to={"/dashboard/admin-profile"}
-                    className="is-drawer-close:tooltip is-drawer-close:tooltip-right"
+                    className={({ isActive }) =>
+                      `${isActive ? "text-blue-500 font-semibold" : ""}
+              is-drawer-close:tooltip is-drawer-close:tooltip-right`
+                    }
                     data-tip="Admin Profile"
                   >
                     <RiAdminFill />
@@ -210,12 +241,16 @@ const DashboardLayout = () => {
                 </li>
               </>
             )}
+
             {role === "staff" && (
               <>
                 <li>
                   <NavLink
                     to={"/dashboard/staff-dashboard"}
-                    className="is-drawer-close:tooltip is-drawer-close:tooltip-right"
+                    className={({ isActive }) =>
+                      `${isActive ? "text-blue-500 font-semibold" : ""}
+              is-drawer-close:tooltip is-drawer-close:tooltip-right`
+                    }
                     data-tip="Dashboard"
                   >
                     <MdDashboard />
@@ -226,7 +261,10 @@ const DashboardLayout = () => {
                 <li>
                   <NavLink
                     to={"/dashboard/staff-assigned-issues"}
-                    className="is-drawer-close:tooltip is-drawer-close:tooltip-right"
+                    className={({ isActive }) =>
+                      `${isActive ? "text-blue-500 font-semibold" : ""}
+              is-drawer-close:tooltip is-drawer-close:tooltip-right`
+                    }
                     data-tip="Assigned Issued"
                   >
                     <FaTasks />
@@ -239,7 +277,10 @@ const DashboardLayout = () => {
                 <li>
                   <NavLink
                     to={"/dashboard/staff-profile"}
-                    className="is-drawer-close:tooltip is-drawer-close:tooltip-right"
+                    className={({ isActive }) =>
+                      `${isActive ? "text-blue-500 font-semibold" : ""}
+              is-drawer-close:tooltip is-drawer-close:tooltip-right`
+                    }
                     data-tip="Staff Profile"
                   >
                     <RiAdminFill />
