@@ -4,11 +4,13 @@ import { Link, Navigate, useLocation, useNavigate } from "react-router";
 import useAuth from "../../Hooks/useAuth";
 import { toast } from "react-toastify";
 import useAxiosSecure from "../../Hooks/useAxiosSecure";
+import { useState } from "react";
 
 const Login = () => {
   const {
     register,
     handleSubmit,
+    setValue,
     formState: { errors },
   } = useForm();
   const { logInUserFunc, user, signInWithGoogleFunc } = useAuth();
@@ -17,10 +19,22 @@ const Login = () => {
   const navigate = useNavigate();
   const location = useLocation();
   const from = location.state || "/";
+  const [loading, setLoading] = useState(false);
 
   if (user) return <Navigate to={from} replace={true} />;
 
+  const fillAdminDemo = () => {
+    setValue("email", "admin@gmail.com");
+    setValue("password", "Admin1234");
+  };
+
+  const fillCitizenDemo = () => {
+    setValue("email", "citizen@gmail.com");
+    setValue("password", "Citizen1234");
+  };
+
   const handleLogin = (data) => {
+    setLoading(true);
     // console.log(data);
     logInUserFunc(data.email, data.password)
       .then((res) => {
@@ -31,6 +45,9 @@ const Login = () => {
       .catch((err) => {
         console.log(err);
         toast.error(err?.message);
+      })
+      .finally(() => {
+        setLoading(false);
       });
   };
 
@@ -123,9 +140,38 @@ const Login = () => {
             </div>
 
             {/* LOGIN BUTTON */}
-            <button className="w-full py-3 rounded-xl bg-blue-600 hover:bg-blue-700 transition text-white font-medium">
-              Login
+            <button
+              type="submit"
+              disabled={loading}
+              className="w-full py-3 rounded-xl bg-blue-600 hover:bg-blue-700 transition text-white font-medium disabled:opacity-70 disabled:cursor-not-allowed"
+            >
+              {loading ? (
+                <div className="flex items-center justify-center gap-2">
+                  <span className="w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin"></span>
+                  Logging in...
+                </div>
+              ) : (
+                "Login"
+              )}
             </button>
+
+            {/* DEMO LOGIN */}
+            <div className="grid grid-cols-2 gap-3 mb-5">
+              <button
+                type="button"
+                onClick={fillCitizenDemo}
+                className="py-2 rounded-lg bg-green-100 text-green-700 font-medium hover:bg-green-200"
+              >
+                Citizen Demo
+              </button>
+              <button
+                type="button"
+                onClick={fillAdminDemo}
+                className="py-2 rounded-lg bg-purple-100 text-purple-700 font-medium hover:bg-purple-200"
+              >
+                Admin Demo
+              </button>
+            </div>
           </form>
 
           {/* DIVIDER */}

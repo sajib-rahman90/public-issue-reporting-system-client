@@ -5,6 +5,7 @@ import useAxiosSecure from "../../../../Hooks/useAxiosSecure";
 import { toast } from "react-toastify";
 import LoaddingSpinner from "../../../../Components/LoaddingSpinner";
 import useAuth from "../../../../Hooks/useAuth";
+import LeatestResolveSkeleton from "../../../../Components/LeatestResolveSkeleton";
 
 const Allissues = () => {
   const [search, setSearch] = useState("");
@@ -120,80 +121,73 @@ const Allissues = () => {
         </select>
       </div>
 
-      {/* LOADER */}
-      {isLoading && (
-        <p className="text-center py-10 text-gray-500">Loading issues...</p>
-      )}
-
       {/* GRID */}
-      <div className="grid md:grid-cols-3 gap-6">
-        {isLoading ? (
-          <div className="col-span-full flex justify-center py-10">
-            <LoaddingSpinner />
-          </div>
-        ) : (
-          data?.issues?.map((issue) => (
-            <div
-              key={issue._id}
-              className="bg-white rounded-3xl overflow-hidden border border-slate-200 shadow-sm hover:shadow-lg transition duration-300"
-            >
-              {/* IMAGE */}
-              <div className="relative">
-                <img src={issue.image} className="w-full h-52 object-cover" />
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+        {isLoading
+          ? [...Array(4)].map((_, index) => (
+              <LeatestResolveSkeleton key={index} />
+            ))
+          : data?.issues?.map((issue) => (
+              <div
+                key={issue._id}
+                className="bg-white rounded-3xl overflow-hidden border border-slate-200 shadow-sm hover:shadow-lg transition duration-300"
+              >
+                {/* IMAGE */}
+                <div className="relative">
+                  <img src={issue.image} className="w-full h-52 object-cover" />
 
-                <span className="absolute top-4 left-4 bg-yellow-100 text-yellow-700 text-xs px-3 py-1 rounded-full">
-                  {issue.status}
-                </span>
+                  <span className="absolute top-4 left-4 bg-yellow-100 text-yellow-700 text-xs px-3 py-1 rounded-full">
+                    {issue.status}
+                  </span>
 
-                <span
-                  className={`absolute top-4 right-4 text-xs px-3 py-1 rounded-full ${
-                    issue.priority === "High"
-                      ? "bg-red-100 text-red-600"
-                      : "bg-green-100 text-green-600"
-                  }`}
-                >
-                  {issue.priority === "High" ? "🔥 High" : "✓ Normal"}
-                </span>
-              </div>
-
-              {/* CONTENT */}
-              <div className="p-5">
-                <p className="text-sm text-blue-600 font-medium mb-2">
-                  {issue.category}
-                </p>
-
-                <h3 className="text-xl font-semibold text-slate-800">
-                  {issue.title}
-                </h3>
-
-                <p className="text-sm text-slate-500 mt-2 line-clamp-2">
-                  {issue.description}
-                </p>
-
-                <div className="mt-4 text-sm text-slate-500 flex items-center gap-2">
-                  📍 {issue.location}
+                  <span
+                    className={`absolute top-4 right-4 text-xs px-3 py-1 rounded-full ${
+                      issue.priority === "High"
+                        ? "bg-red-100 text-red-600"
+                        : "bg-green-100 text-green-600"
+                    }`}
+                  >
+                    {issue.priority === "High" ? "🔥 High" : "✓ Normal"}
+                  </span>
                 </div>
 
-                <div className="mt-6 flex items-center justify-between">
-                  <button
-                    onClick={() => handleUpvote(issue._id)}
-                    disabled={upvoteMutation.isPending}
-                    className="px-4 py-2 bg-slate-100 rounded-xl text-sm hover:bg-slate-200"
-                  >
-                    👍 {issue.upvote}
-                  </button>
+                {/* CONTENT */}
+                <div className="p-5">
+                  <p className="text-sm text-blue-600 font-medium mb-2">
+                    {issue.category}
+                  </p>
 
-                  <Link
-                    to={`/issues/${issue._id}`}
-                    className="px-5 py-2 bg-blue-600 text-white rounded-xl"
-                  >
-                    View Details
-                  </Link>
+                  <h3 className="text-xl font-semibold text-slate-800">
+                    {issue.title}
+                  </h3>
+
+                  <p className="text-sm text-slate-500 mt-2 line-clamp-2">
+                    {issue.description}
+                  </p>
+
+                  <div className="mt-4 text-sm text-slate-500 flex items-center gap-2">
+                    📍 {issue.location}
+                  </div>
+
+                  <div className="mt-6 flex items-center justify-between">
+                    <button
+                      onClick={() => handleUpvote(issue._id)}
+                      disabled={upvoteMutation.isPending}
+                      className="px-4 py-2 bg-slate-100 rounded-xl text-sm hover:bg-slate-200"
+                    >
+                      👍 {issue.upvote}
+                    </button>
+
+                    <Link
+                      to={`/issues/${issue._id}`}
+                      className="px-5 py-2 bg-blue-600 text-white rounded-xl"
+                    >
+                      View Details
+                    </Link>
+                  </div>
                 </div>
               </div>
-            </div>
-          ))
-        )}
+            ))}
       </div>
 
       {/* PAGINATION */}

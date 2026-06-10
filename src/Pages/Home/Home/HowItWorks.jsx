@@ -3,7 +3,7 @@ import { motion } from "framer-motion";
 
 const HowItWorks = () => {
   return (
-    <section className="py-20 bg-linear-to-b from-white to-slate-50">
+    <section className="py-20 bg-base-200">
       <div className="max-w-11/12 mx-auto sm:px-4">
         {/* Heading */}
         <motion.div

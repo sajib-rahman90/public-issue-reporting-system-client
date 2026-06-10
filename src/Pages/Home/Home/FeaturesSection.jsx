@@ -10,7 +10,7 @@ import { motion } from "framer-motion";
 
 const FeaturesSection = () => {
   return (
-    <section className="py-20 bg-linear-to-b from-slate-50 to-white">
+    <section className="py-20 bg-base-200">
       <div className="max-w-11/12 mx-auto sm:px-4 ">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
@@ -29,7 +29,7 @@ const FeaturesSection = () => {
           </p>
         </motion.div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
           <motion.div
             initial={{ opacity: 0, y: 40 }}
             whileInView={{ opacity: 1, y: 0 }}
