@@ -123,7 +123,7 @@ const IssueDetails = () => {
   if (isLoading) return <LoaddingSpinner />;
   return (
     <div className="max-w-5xl mx-auto px-4 py-8">
-      <div className="bg-white rounded-3xl shadow-md overflow-hidden border border-gray-200">
+      <div className="bg-base-100 rounded-3xl shadow-md overflow-hidden border border-base-300">
         {/* IMAGE */}
         <img
           src={issue?.image}
@@ -155,15 +155,17 @@ const IssueDetails = () => {
           </div>
 
           {/* TITLE */}
-          <h1 className="text-2xl md:text-4xl font-bold text-gray-800">
+          <h1 className="text-2xl md:text-4xl font-bold text-base-content">
             {issue?.title}
           </h1>
 
           {/* DESCRIPTION */}
-          <p className="text-gray-600 mt-5 leading-7">{issue?.description}</p>
+          <p className="text-base-content/70 mt-5 leading-7">
+            {issue?.description}
+          </p>
 
           {/* LOCATION */}
-          <div className="flex items-center gap-2 mt-6 text-gray-500">
+          <div className="flex items-center gap-2 mt-6 text-base-content/70">
             <FaMapMarkerAlt />
 
             <span>{issue?.location}</span>
@@ -172,27 +174,29 @@ const IssueDetails = () => {
           {/* INFO SECTION */}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-5 mt-8">
             {/* STAFF */}
-            <div className="bg-gray-50 rounded-2xl p-5 border border-gray-200">
-              <h3 className="text-lg font-semibold text-gray-800 mb-4">
+            <div className="bg-base-200 rounded-2xl p-5 border border-base-300">
+              <h3 className="text-lg font-semibold text-base-content mb-4">
                 Assigned Staff
               </h3>
 
               {issue?.assignedStaffName || issue?.assignedStaffEmail ? (
                 <div>
                   {issue?.assignedStaffName && (
-                    <h4 className="font-medium text-gray-800">
+                    <h4 className="font-medium text-base-content">
                       {issue.assignedStaffName}
                     </h4>
                   )}
 
                   {issue?.assignedStaffEmail && (
-                    <p className="text-sm text-gray-500 mt-1">
+                    <p className="text-sm text-base-content/70 mt-1">
                       {issue.assignedStaffEmail}
                     </p>
                   )}
                 </div>
               ) : (
-                <p className="text-gray-500 text-sm">No staff assigned yet.</p>
+                <p className="text-base-content/70 text-sm">
+                  No staff assigned yet.
+                </p>
               )}
             </div>
           </div>
@@ -200,7 +204,10 @@ const IssueDetails = () => {
           {/* ACTION BUTTONS */}
           <div className="flex flex-wrap gap-4 mt-8">
             {/* UPVOTE */}
-            <button className="flex items-center gap-2 bg-gray-100 hover:bg-gray-200 px-5 py-3 rounded-xl transition">
+            <button
+              className="flex items-center gap-2 bg-base-200 hover:bg-base-300
+ px-5 py-3 rounded-xl transition"
+            >
               <FaArrowUp />
               {issue?.upvote} Upvotes
             </button>
@@ -264,16 +271,18 @@ const IssueDetails = () => {
           </div> */}
 
           {/* ISSUE TIMELINE */}
-          <div className="mt-8 bg-gray-50 rounded-2xl p-5 border border-gray-200">
-            <h3 className="text-lg font-semibold text-gray-800 mb-4">
+          <div className="mt-8 bg-base-200 rounded-2xl p-5 border border-base-300">
+            <h3 className="text-lg font-semibold text-base-content mb-4">
               Issue Timeline
             </h3>
             {timeline.length === 0 ? (
-              <p className="text-gray-500">No timeline updates available</p>
+              <p className="text-base-content/80">
+                No timeline updates available
+              </p>
             ) : (
-              <div className="space-y-3 text-sm text-gray-700">
+              <div className="space-y-3 text-sm text-base-content/70">
                 {timeline.map((item) => (
-                  <div key={item._id} className="border-b border-gray-200 pb-2">
+                  <div key={item._id} className="border-b border-base-300 pb-2">
                     <p>
                       <span className="font-semibold text-blue-500">
                         {item.status}
@@ -292,7 +301,7 @@ const IssueDetails = () => {
 
           {showModal && (
             <div className="fixed inset-0 bg-black/50 flex justify-center items-center z-50">
-              <div className="bg-white w-[95%] md:w-150 rounded-2xl p-6">
+              <div className="bg-base-100 w-[95%] md:w-150 rounded-2xl p-6 border border-base-300">
                 <h2 className="text-2xl font-bold mb-5">Update Issue</h2>
 
                 <form
@@ -302,12 +311,12 @@ const IssueDetails = () => {
                   <input
                     {...register("title")}
                     placeholder="Title"
-                    className="w-full border p-3 rounded-xl"
+                    className="input input-bordered w-full rounded-xl"
                   />
 
                   <select
                     {...register("category")}
-                    className="w-full border p-3 rounded-xl"
+                    className="select select-bordered w-full rounded-xl"
                   >
                     <option value="Road Damage">Road Damage</option>
                     <option value="Broken Streelight">Broken Streelight</option>
@@ -325,14 +334,14 @@ const IssueDetails = () => {
                     {...register("description")}
                     placeholder="Description"
                     rows={4}
-                    className="w-full border p-3 rounded-xl"
+                    className="textarea textarea-bordered w-full rounded-xl"
                   />
 
                   <div className="flex justify-end gap-3">
                     <button
                       type="button"
                       onClick={() => setShowModal(false)}
-                      className="px-5 py-2 bg-gray-300 rounded-xl"
+                      className="px-5 py-2 bg-base-300 rounded-xl"
                     >
                       Cancel
                     </button>

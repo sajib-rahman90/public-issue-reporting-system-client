@@ -31,7 +31,7 @@ const AdminPayments = () => {
 
   return (
     <div className="p-6 space-y-6">
-      <h2 className="text-3xl text-center font-bold mb-8 md:text-4xl text-black">
+      <h2 className="text-3xl text-center font-bold mb-8 md:text-4xl text-base-content">
         Payments Management
       </h2>
 
@@ -53,13 +53,18 @@ const AdminPayments = () => {
           value={search}
           onChange={(e) => setSearch(e.target.value)}
           placeholder="Search..."
-          className="border p-2 rounded-lg"
+          className="input 
+input-bordered p-2 rounded-lg bg-base-100
+text-base-content"
         />
 
         <select
           value={status}
           onChange={(e) => setStatus(e.target.value)}
-          className="border p-2 rounded-lg"
+          className="select 
+select-bordered
+bg-base-100
+text-base-content p-2 rounded-lg"
         >
           <option value="">All Status</option>
           <option value="paid">Paid</option>
@@ -69,9 +74,9 @@ const AdminPayments = () => {
         </select>
       </div>
 
-      <div className="overflow-x-auto bg-white rounded-xl shadow">
-        <table className="w-full min-w-200">
-          <thead className="bg-gray-100">
+      <div className="overflow-x-auto bg-base-100 rounded-xl shadow">
+        <table className="w-full min-w-200 text-base-content border border-base-300">
+          <thead className="bg-base-200">
             <tr>
               <th className="p-3 text-left">Name</th>
               <th>Email</th>
@@ -84,7 +89,7 @@ const AdminPayments = () => {
 
           <tbody>
             {filtered.map((p) => (
-              <tr key={p._id} className="border-t">
+              <tr key={p._id} className="border-t border-base-300">
                 <td className="p-3">{p.customerName}</td>
                 <td>{p.customerEmail}</td>
                 <td>৳ {p.amount}</td>

@@ -66,7 +66,7 @@ const Allissues = () => {
       <div className="grid grid-cols-1 md:grid-cols-4 gap-3 mb-6">
         {/* SEARCH */}
         <input
-          className="border p-2 rounded-xl"
+          className="input input-bordered w-full rounded-2xl"
           placeholder="Search issue..."
           value={search}
           onChange={(e) => {
@@ -77,7 +77,7 @@ const Allissues = () => {
 
         {/* CATEGORY */}
         <select
-          className="border p-2 rounded-xl"
+          className="select select-bordered w-full rounded-2xl"
           onChange={(e) => {
             setCategory(e.target.value);
             setPage(1);
@@ -92,7 +92,7 @@ const Allissues = () => {
 
         {/* STATUS */}
         <select
-          className="border p-2 rounded-xl"
+          className="select select-bordered w-full rounded-2xl"
           onChange={(e) => {
             setStatus(e.target.value);
             setPage(1);
@@ -109,7 +109,7 @@ const Allissues = () => {
 
         {/* PRIORITY */}
         <select
-          className="border p-2 rounded-xl"
+          className="select select-bordered w-full rounded-2xl"
           onChange={(e) => {
             setPriority(e.target.value);
             setPage(1);
@@ -130,7 +130,7 @@ const Allissues = () => {
           : data?.issues?.map((issue) => (
               <div
                 key={issue._id}
-                className="bg-white rounded-3xl overflow-hidden border border-slate-200 shadow-sm hover:shadow-lg transition duration-300"
+                className="bg-base-100 rounded-3xl overflow-hidden border border-base-300 shadow-sm hover:shadow-lg transition duration-300"
               >
                 {/* IMAGE */}
                 <div className="relative">
@@ -157,15 +157,15 @@ const Allissues = () => {
                     {issue.category}
                   </p>
 
-                  <h3 className="text-xl font-semibold text-slate-800">
+                  <h3 className="text-xl font-semibold text-base-content">
                     {issue.title}
                   </h3>
 
-                  <p className="text-sm text-slate-500 mt-2 line-clamp-2">
+                  <p className="text-sm text-base-content/70 mt-2 line-clamp-2">
                     {issue.description}
                   </p>
 
-                  <div className="mt-4 text-sm text-slate-500 flex items-center gap-2">
+                  <div className="mt-4 text-sm text-base-content/70 flex items-center gap-2">
                     📍 {issue.location}
                   </div>
 
@@ -173,14 +173,14 @@ const Allissues = () => {
                     <button
                       onClick={() => handleUpvote(issue._id)}
                       disabled={upvoteMutation.isPending}
-                      className="px-4 py-2 bg-slate-100 rounded-xl text-sm hover:bg-slate-200"
+                      className="px-4 py-2 bg-base-200 rounded-xl text-sm hover:bg-base-300"
                     >
                       👍 {issue.upvote}
                     </button>
 
                     <Link
                       to={`/issues/${issue._id}`}
-                      className="px-5 py-2 bg-blue-600 text-white rounded-xl"
+                      className="btn btn-primary btn-sm rounded-xl"
                     >
                       View Details
                     </Link>
@@ -195,7 +195,7 @@ const Allissues = () => {
         <button
           disabled={page === 1}
           onClick={() => setPage(page - 1)}
-          className="px-4 py-2 bg-gray-200 rounded-lg disabled:opacity-50"
+          className="px-4 py-2 bg-base-300 rounded-xl disabled:opacity-50"
         >
           Prev
         </button>
@@ -205,7 +205,7 @@ const Allissues = () => {
         <button
           disabled={!data?.hasMore}
           onClick={() => setPage(page + 1)}
-          className="px-4 py-2 bg-gray-200 rounded-lg disabled:opacity-50"
+          className="px-4 py-2 bg-base-300 rounded-xl disabled:opacity-50"
         >
           Next
         </button>

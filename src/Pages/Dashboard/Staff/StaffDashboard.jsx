@@ -31,7 +31,7 @@ const StaffDashboard = () => {
 
   return (
     <div className="p-4 md:p-8">
-      <h2 className="text-3xl text-center font-bold mb-8 md:text-4xl text-black">
+      <h2 className="text-3xl text-center font-bold mb-8 md:text-4xl text-base-content">
         Staff Dashboard Overview
       </h2>
 
@@ -54,8 +54,10 @@ const StaffDashboard = () => {
       </div>
 
       {/* CHART */}
-      <div className="mt-10 bg-white p-6 rounded-xl shadow">
-        <h3 className="text-lg font-bold text-center mb-4">Issue Statistics</h3>
+      <div className="mt-10 bg-base-100 p-6 rounded-xl shadow border border-base-300">
+        <h3 className="text-lg font-bold text-center text-base-content mb-4">
+          Issue Statistics
+        </h3>
 
         <div style={{ width: "100%", height: 300 }}>
           <ResponsiveContainer>
@@ -71,7 +73,13 @@ const StaffDashboard = () => {
                   <Cell key={index} fill={COLORS[index]} />
                 ))}
               </Pie>
-              <Tooltip />
+              <Tooltip
+                contentStyle={{
+                  backgroundColor: "var(--fallback-b1,oklch(var(--b1)))",
+                  borderColor: "var(--fallback-b3,oklch(var(--b3)))",
+                  color: "var(--fallback-bc,oklch(var(--bc)))",
+                }}
+              />
             </PieChart>
           </ResponsiveContainer>
         </div>
@@ -81,13 +89,16 @@ const StaffDashboard = () => {
       <div className="mt-10">
         <h3 className="text-lg font-bold mb-4">Today's Tasks</h3>
 
-        <div className="bg-white rounded-xl shadow p-4">
+        <div className="bg-base-100 rounded-xl shadow p-4  border border-base-300">
           {todayTasks.length === 0 ? (
-            <p className="text-gray-500">No tasks for today</p>
+            <p className="text-base-content/60">No tasks for today</p>
           ) : (
             <ul className="space-y-2">
               {todayTasks.map((task) => (
-                <li key={task._id} className="p-3 border rounded">
+                <li
+                  key={task._id}
+                  className="p-3 border border-base-300 rounded"
+                >
                   {task.title}
                 </li>
               ))}

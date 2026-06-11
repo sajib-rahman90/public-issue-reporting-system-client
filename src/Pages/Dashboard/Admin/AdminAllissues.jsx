@@ -117,14 +117,14 @@ const AllIssues = () => {
 
   return (
     <div className="p-6">
-      <h2 className="text-3xl text-center font-bold mb-8 md:text-4xl text-black">
+      <h2 className="text-3xl text-center font-bold mb-8 md:text-4xl text-base-content">
         All Issues
       </h2>
 
-      <div className="overflow-x-auto bg-white rounded-xl shadow">
-        <table className="table w-full">
-          <thead className="bg-gray-100">
-            <tr>
+      <div className="overflow-x-auto bg-base-100 rounded-xl shadow">
+        <table className="table w-full text-base-content border border-base-300">
+          <thead className="bg-base-200">
+            <tr className="border border-base-300">
               <th>Title</th>
               <th>Category</th>
               <th>Status</th>
@@ -136,7 +136,7 @@ const AllIssues = () => {
 
           <tbody>
             {issues.map((issue) => (
-              <tr key={issue._id}>
+              <tr key={issue._id} className="border border-base-300">
                 <td>{issue.title}</td>
                 <td>{issue.category}</td>
                 <td>
@@ -172,7 +172,7 @@ const AllIssues = () => {
 
                 <td>
                   {issue.assignedStaffName || (
-                    <span className="text-gray-400">Not Assigned</span>
+                    <span className="text-base-content/40">Not Assigned</span>
                   )}
                 </td>
 

@@ -13,10 +13,10 @@ const HowItWorks = () => {
           transition={{ duration: 0.6 }}
           className="text-center mb-16"
         >
-          <h2 className="text-3xl md:text-4xl font-bold text-black ">
+          <h2 className="text-3xl md:text-4xl font-bold text-base-content">
             How It Works
           </h2>
-          <p className="mt-3 text-base md:text-lg text-gray-700 leading-relaxed">
+          <p className="mt-3 text-base md:text-lg text-base-content/70 leading-relaxed">
             A simple and transparent workflow that explains how issues move from
             reporting to resolution.
           </p>
@@ -25,7 +25,7 @@ const HowItWorks = () => {
         {/* Steps Grid */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10 relative">
           {/* connector line */}
-          <div className="hidden lg:block absolute top-14 left-0 right-0 h-0.5 bg-gray-200"></div>
+          <div className="hidden lg:block absolute top-14 left-0 right-0 h-0.5 bg-base-300"></div>
 
           {/* Step 1 */}
           <motion.div
@@ -33,7 +33,7 @@ const HowItWorks = () => {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5, delay: 0.1 }}
-            className="relative bg-white rounded-3xl p-8 border border-gray-100 shadow-sm hover:shadow-xl transition-all duration-300 text-center"
+            className="relative bg-base-100 rounded-3xl p-8 border border-base-300 shadow-sm hover:shadow-xl transition-all duration-300 text-center"
           >
             <div className="absolute -top-5 left-1/2 -translate-x-1/2 w-10 h-10 rounded-full bg-blue-600 text-white flex items-center justify-center font-semibold shadow-md">
               1
@@ -43,11 +43,11 @@ const HowItWorks = () => {
               <ClipboardList size={34} />
             </div>
 
-            <h3 className="mt-4 text-lg font-bold text-gray-900">
+            <h3 className="mt-4 text-lg font-bold text-base-content">
               Report an Issue
             </h3>
 
-            <p className="mt-2 text-sm text-gray-600 leading-relaxed">
+            <p className="mt-2 text-sm text-base-content/70 leading-relaxed">
               Users submit issues with title, description, category, image, and
               location using a simple form.
             </p>
@@ -59,7 +59,7 @@ const HowItWorks = () => {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5, delay: 0.2 }}
-            className="relative bg-white rounded-3xl p-8 border border-gray-100 shadow-sm hover:shadow-xl transition-all duration-300 text-center"
+            className="relative bg-base-100 rounded-3xl p-8 border border-base-300 shadow-sm hover:shadow-xl transition-all duration-300 text-center"
           >
             <div className="absolute -top-5 left-1/2 -translate-x-1/2 w-10 h-10 rounded-full bg-blue-600 text-white flex items-center justify-center font-semibold shadow-md">
               2
@@ -69,11 +69,11 @@ const HowItWorks = () => {
               <UserCheck size={34} />
             </div>
 
-            <h3 className="mt-4 text-lg font-bold text-gray-900">
+            <h3 className="mt-4 text-lg font-bold text-base-content">
               Admin Review
             </h3>
 
-            <p className="mt-2 text-sm text-gray-600 leading-relaxed">
+            <p className="mt-2 text-sm text-base-content/70 leading-relaxed">
               Admin verifies submitted issues and checks validity before moving
               forward.
             </p>
@@ -85,7 +85,7 @@ const HowItWorks = () => {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5, delay: 0.3 }}
-            className="relative bg-white rounded-3xl p-8 border border-gray-100 shadow-sm hover:shadow-xl transition-all duration-300 text-center"
+            className="relative bg-base-100 rounded-3xl p-8 border border-base-300 shadow-sm hover:shadow-xl transition-all duration-300 text-center"
           >
             <div className="absolute -top-5 left-1/2 -translate-x-1/2 w-10 h-10 rounded-full bg-blue-600 text-white flex items-center justify-center font-semibold shadow-md">
               3
@@ -95,11 +95,11 @@ const HowItWorks = () => {
               <Settings size={34} />
             </div>
 
-            <h3 className="mt-4 text-lg font-bold text-gray-900">
+            <h3 className="mt-4 text-lg font-bold text-base-content">
               Assign to Staff
             </h3>
 
-            <p className="mt-2 text-sm text-gray-600 leading-relaxed">
+            <p className="mt-2 text-sm text-base-content/70 leading-relaxed">
               Issues are assigned to relevant staff based on category and
               location.
             </p>
@@ -111,21 +111,21 @@ const HowItWorks = () => {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5, delay: 0.4 }}
-            className="relative bg-white rounded-3xl p-8 border border-gray-100 shadow-sm hover:shadow-xl transition-all duration-300 text-center"
+            className="relative bg-base-100 rounded-3xl p-8 border border-base-300 shadow-sm hover:shadow-xl transition-all duration-300 text-center"
           >
             <div className="absolute -top-5 left-1/2 -translate-x-1/2 w-10 h-10 rounded-full bg-blue-600 text-white flex items-center justify-center font-semibold shadow-md">
               4
             </div>
 
-            <div className="mt-6 flex justify-center text-blue-600">
+            <div className="mt-6 flex justify-center text-primary">
               <CheckCircle2 size={34} />
             </div>
 
-            <h3 className="mt-4 text-lg font-bold text-gray-900">
+            <h3 className="mt-4 text-lg font-bold text-base-content">
               Resolve & Update
             </h3>
 
-            <p className="mt-2 text-sm text-gray-600 leading-relaxed">
+            <p className="mt-2 text-sm text-base-content/70 leading-relaxed">
               Staff resolves issues and updates status so users can track
               progress in real time.
             </p>

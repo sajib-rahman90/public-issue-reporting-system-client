@@ -64,18 +64,22 @@ const AdminProfile = () => {
   return (
     <div className="max-w-4xl mx-auto p-4 md:p-8">
       {/* card */}
-      <div className="bg-white shadow-lg rounded-2xl p-6">
+      <div className="bg-base-100 shadow-lg rounded-2xl p-6 border border-base-300">
         <div className="flex flex-col md:flex-row items-center gap-6">
           <img
             src={admin.photo}
             alt="admin"
-            className="w-28 h-28 rounded-full object-cover border"
+            className="w-28 h-28 rounded-full object-cover border border-base-300"
           />
 
           <div className="flex-1">
-            <h2 className="text-2xl font-bold">{admin.name}</h2>
-            <p className="text-gray-500">{admin.email}</p>
-            <p className="mt-1 text-sm text-gray-600">Role: {admin.role}</p>
+            <h2 className="text-2xl font-bold text-base-content">
+              {admin.name}
+            </h2>
+            <p className="text-base-content/60">{admin.email}</p>
+            <p className="mt-1 text-sm text-base-content/70">
+              Role: {admin.role}
+            </p>
 
             <button
               onClick={() => {
@@ -98,7 +102,7 @@ const AdminProfile = () => {
             <input
               {...register("name", { required: true })}
               placeholder="Name"
-              className="input input-bordered w-full"
+              className="input input-bordered w-full bg-base-100 text-base-content"
             />
             {errors.name?.type === "required" && (
               <p className="text-red-400">Name is required</p>
@@ -107,7 +111,7 @@ const AdminProfile = () => {
             <input
               {...register("photo")}
               placeholder="Photo URL"
-              className="input input-bordered w-full md:col-span-2"
+              className="input input-bordered w-full md:col-span-2 bg-base-100 text-base-content"
             />
             {errors.photo?.type === "required" && (
               <p className="text-red-400">Photo is required</p>

@@ -70,14 +70,14 @@ const StaffAssignedIssues = () => {
   return (
     <div className="p-4 md:p-8">
       {/* HEADER */}
-      <h2 className="text-3xl text-center font-bold mb-8 md:text-4xl text-black">
+      <h2 className="text-3xl text-center font-bold mb-8 md:text-4xl text-base-content">
         Assigned Issues
       </h2>
 
       {/* FILTERS */}
       <div className="flex gap-3 mb-4 flex-wrap">
         <select
-          className="select select-bordered"
+          className="select select-bordered bg-base-100 text-base-content"
           onChange={(e) => setStatusFilter(e.target.value)}
         >
           <option value="">All Status</option>
@@ -89,7 +89,7 @@ const StaffAssignedIssues = () => {
         </select>
 
         <select
-          className="select select-bordered"
+          className="select select-bordered bg-base-100 text-base-content "
           onChange={(e) => setPriorityFilter(e.target.value)}
         >
           <option value="">All Priority</option>
@@ -99,9 +99,9 @@ const StaffAssignedIssues = () => {
       </div>
 
       {/* TABLE */}
-      <div className="overflow-x-auto bg-white rounded-xl shadow">
+      <div className="overflow-x-auto bg-base-100 rounded-xl shadow border border-base-300">
         <table className="table w-full">
-          <thead className="bg-gray-100">
+          <thead className="bg-base-200 text-base-content">
             <tr>
               <th>Title</th>
               <th>Category</th>
@@ -114,7 +114,12 @@ const StaffAssignedIssues = () => {
 
           <tbody>
             {sortedIssues.map((issue) => (
-              <tr key={issue._id}>
+              <tr
+                key={issue._id}
+                className="
+                hover:bg-base-200
+                "
+              >
                 <td>{issue.title}</td>
                 <td>{issue.category}</td>
 
@@ -131,7 +136,8 @@ const StaffAssignedIssues = () => {
                 <td>
                   {statusFlow[issue.status]?.length > 0 ? (
                     <select
-                      className="select select-sm select-bordered"
+                      className="select select-sm select-bordered bg-base-100
+                    text-base-content"
                       onChange={(e) =>
                         handleStatusChange(issue._id, e.target.value)
                       }
@@ -148,7 +154,7 @@ const StaffAssignedIssues = () => {
                       ))}
                     </select>
                   ) : (
-                    <span className="text-gray-400">No Action</span>
+                    <span className="text-base-content/50">No Action</span>
                   )}
                 </td>
               </tr>

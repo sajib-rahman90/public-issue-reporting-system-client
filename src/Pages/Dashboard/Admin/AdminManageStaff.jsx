@@ -124,11 +124,13 @@ const AdminManageStaff = () => {
     <div className="p-4 md:p-8">
       <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4 mb-6">
         <div>
-          <h2 className="text-3xl  font-bold mb-4 md:text-4xl text-black">
+          <h2 className="text-3xl  font-bold mb-4 md:text-4xl text-base-content">
             Manage Staff
           </h2>
 
-          <p className="text-gray-600 mt-1">Total Staff: {staffs.length}</p>
+          <p className="text-base-content/60 mt-1">
+            Total Staff: {staffs.length}
+          </p>
         </div>
 
         <button
@@ -140,9 +142,9 @@ const AdminManageStaff = () => {
       </div>
 
       {/* table */}
-      <div className="overflow-x-auto bg-white rounded-2xl shadow-lg">
-        <table className="table w-full">
-          <thead className="bg-gray-100">
+      <div className="overflow-x-auto bg-base-100  rounded-2xl shadow-lg">
+        <table className="table w-full text-base-content border border-base-300">
+          <thead className="bg-base-200">
             <tr>
               <th>#</th>
               <th>Photo</th>
@@ -163,7 +165,7 @@ const AdminManageStaff = () => {
                   <img
                     src={staff.photo}
                     alt={staff.name}
-                    className="w-12 h-12 rounded-full object-cover"
+                    className="w-12 h-12 rounded-full object-cover border border-base-300"
                   />
                 </td>
 
@@ -207,7 +209,7 @@ const AdminManageStaff = () => {
       </div>
       {showAddModal && (
         <dialog className="modal modal-open">
-          <div className="modal-box">
+          <div className="modal-box bg-base-100 text-base-content">
             <h3 className="font-bold text-2xl mb-5">Add New Staff</h3>
 
             <form onSubmit={handleSubmit(handleAddStaff)} className="space-y-4">
@@ -271,7 +273,7 @@ const AdminManageStaff = () => {
 
       {showUpdateModal && selectedStaff && (
         <dialog className="modal modal-open">
-          <div className="modal-box">
+          <div className="modal-box bg-base-100 text-base-content">
             <h3 className="font-bold text-2xl mb-5">Update Staff</h3>
 
             <form

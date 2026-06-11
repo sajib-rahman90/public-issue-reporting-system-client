@@ -40,7 +40,7 @@ const CitizenDashboard = () => {
 
   return (
     <div className="p-6">
-      <h2 className="text-3xl text-center font-bold mb-8 md:text-4xl text-black">
+      <h2 className="text-3xl text-center font-bold mb-8 md:text-4xl text-base-content">
         Citizen Dashboard
       </h2>
 
@@ -76,8 +76,8 @@ const CitizenDashboard = () => {
         </div>
       </div>
 
-      <div className="bg-white shadow rounded-xl p-6 mt-10">
-        <h3 className="text-2xl text-center font-bold mb-5">
+      <div className="bg-base-100 border border-base-300 shadow rounded-xl p-6 mt-10">
+        <h3 className="text-2xl text-center font-bold mb-5 text-base-content">
           Issue Status Overview
         </h3>
 

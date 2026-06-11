@@ -44,11 +44,11 @@ const FAQSection = () => {
           transition={{ duration: 0.5 }}
           className="text-center mb-14"
         >
-          <h2 className="text-3xl md:text-4xl font-bold text-black">
+          <h2 className="text-3xl md:text-4xl font-bold text-base-content">
             Frequently Asked Questions
           </h2>
 
-          <p className="mt-3 text-base md:text-lg text-gray-700 leading-relaxed">
+          <p className="mt-3 text-base md:text-lg text-base-content/70 leading-relaxed">
             Find answers to common questions about reporting issues, tracking
             progress, and using the platform effectively.
           </p>
@@ -68,12 +68,14 @@ const FAQSection = () => {
             >
               <input type="radio" name="faq-accordion" />
 
-              <div className="collapse-title text-lg md:text-xl font-semibold">
+              <div className="collapse-title text-lg md:text-xl font-semibold text-base-content">
                 {faq.question}
               </div>
 
               <div className="collapse-content">
-                <p className="text-sm leading-relaxed">{faq.answer}</p>
+                <p className="text-sm leading-relaxed text-base-content/70">
+                  {faq.answer}
+                </p>
               </div>
             </div>
           ))}

@@ -1,10 +1,23 @@
 import { Link, NavLink } from "react-router";
 import useAuth from "../../../Hooks/useAuth";
 import { toast } from "react-toastify";
+import { useEffect, useState } from "react";
 
 const Navber = () => {
   const { user, signOutUserFunc } = useAuth();
   // const { handleSubmit } = useForm();
+
+  const [theme, setTheme] = useState(localStorage.getItem("theme") || "light");
+
+  useEffect(() => {
+    const html = document.querySelector("html");
+    html.setAttribute("data-theme", theme);
+    localStorage.setItem("theme", theme);
+  }, [theme]);
+
+  const handleTheme = (checked) => {
+    setTheme(checked ? "dark" : "light");
+  };
 
   const handleLogout = () => {
     signOutUserFunc()
@@ -160,6 +173,55 @@ const Navber = () => {
         </ul>
       </div>
       <div className="navbar-end gap-3">
+        <label className="toggle text-base-content">
+          <input
+            onChange={(e) => handleTheme(e.target.checked)}
+            type="checkbox"
+            value="synthwave"
+            defaultChecked={localStorage.getItem("theme") === "dark"}
+            className="theme-controller"
+          />
+
+          <svg
+            aria-label="sun"
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 24 24"
+          >
+            <g
+              strokeLinejoin="round"
+              strokeLinecap="round"
+              strokeWidth="2"
+              fill="none"
+              stroke="currentColor"
+            >
+              <circle cx="12" cy="12" r="4"></circle>
+              <path d="M12 2v2"></path>
+              <path d="M12 20v2"></path>
+              <path d="m4.93 4.93 1.41 1.41"></path>
+              <path d="m17.66 17.66 1.41 1.41"></path>
+              <path d="M2 12h2"></path>
+              <path d="M20 12h2"></path>
+              <path d="m6.34 17.66-1.41 1.41"></path>
+              <path d="m19.07 4.93-1.41 1.41"></path>
+            </g>
+          </svg>
+
+          <svg
+            aria-label="moon"
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 24 24"
+          >
+            <g
+              strokeLinejoin="round"
+              strokeLinecap="round"
+              strokeWidth="2"
+              fill="none"
+              stroke="currentColor"
+            >
+              <path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"></path>
+            </g>
+          </svg>
+        </label>
         {user ? (
           <div className="dropdown dropdown-end z-50">
             <div
@@ -182,10 +244,10 @@ const Navber = () => {
               className="menu  menu-sm dropdown-content bg-base-100 rounded-box z-50 mt-3 w-52 p-2 shadow"
             >
               <div className=" pb-3 border-b border-b-gray-200">
-                <li className="text-sm font-bold text-gray-700">
+                <li className="text-sm font-bold text-base-content">
                   {user?.displayName}
                 </li>
-                <li className="text-xs text-gray-700">{user?.email}</li>
+                <li className="text-xs text-base-content">{user?.email}</li>
               </div>
 
               <li>
@@ -193,7 +255,7 @@ const Navber = () => {
                   className={({ isActive }) =>
                     isActive
                       ? "text-md text-blue-500 font-semibold"
-                      : "text-md font-semibold text-gray-800"
+                      : "text-md font-semibold text-base-content"
                   }
                   to={"/dashboard"}
                 >

@@ -91,8 +91,8 @@ const ReportIssueForm = () => {
   };
   return (
     <div>
-      <div className="min-h-screen bg-slate-100 px-4 py-10">
-        <div className="max-w-5xl mx-auto bg-white rounded-3xl shadow-lg overflow-hidden border border-slate-200">
+      <div className="min-h-screen bg-base-200 px-4 py-10">
+        <div className="max-w-5xl mx-auto bg-base-100 rounded-3xl shadow-lg overflow-hidden border border-base-300">
           {/* TOP SECTION */}
           <div className="grid lg:grid-cols-5">
             {/* LEFT INFO SIDE */}
@@ -124,11 +124,11 @@ const ReportIssueForm = () => {
             {/* FORM SIDE */}
             <div className="lg:col-span-3 p-6 sm:p-8 md:p-10">
               <div className="mb-8">
-                <h3 className="text-2xl font-bold text-slate-800">
+                <h3 className="text-2xl font-bold text-base-content">
                   Issue Details
                 </h3>
 
-                <p className="text-slate-500 mt-2 text-sm">
+                <p className="text-base-content/70 mt-2 text-sm">
                   Fill out the form below with accurate information.
                 </p>
               </div>
@@ -141,7 +141,7 @@ const ReportIssueForm = () => {
                 <div className="grid md:grid-cols-2 gap-5">
                   {/* TITLE */}
                   <div>
-                    <label className="block text-sm font-medium text-slate-700 mb-2">
+                    <label className="block text-sm font-medium text-base-content mb-2">
                       Issue Title
                     </label>
 
@@ -158,7 +158,7 @@ const ReportIssueForm = () => {
 
                   {/* CATEGORY */}
                   <div>
-                    <label className="block text-sm font-medium text-slate-700 mb-2">
+                    <label className="block text-sm font-medium text-base-content mb-2">
                       Category
                     </label>
 
@@ -179,7 +179,7 @@ const ReportIssueForm = () => {
                 <div className="grid md:grid-cols-2 gap-5">
                   {/* LOCATION */}
                   <div>
-                    <label className="block text-sm font-medium text-slate-700 mb-2">
+                    <label className="block text-sm font-medium text-base-content mb-2">
                       Location
                     </label>
 
@@ -189,11 +189,14 @@ const ReportIssueForm = () => {
                       placeholder="Enter location"
                       className="w-full px-4 py-3 rounded-xl border border-slate-300 bg-slate-50 text-slate-700 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-blue-500"
                     />
+                    {errors.location?.type === "required" && (
+                      <p className="text-red-400">Enter Isuue Location.</p>
+                    )}
                   </div>
 
                   {/* IMAGE */}
                   <div>
-                    <label className="block text-sm font-medium text-slate-700 mb-2">
+                    <label className="block text-sm font-medium text-base-content mb-2">
                       Upload Image
                     </label>
 
@@ -210,12 +213,15 @@ const ReportIssueForm = () => {
                 file:text-blue-700
                 hover:file:bg-blue-200"
                     />
+                    {errors.photo?.type === "required" && (
+                      <p className="text-red-400">Upload an Isuue Photo.</p>
+                    )}
                   </div>
                 </div>
 
                 {/* DESCRIPTION */}
                 <div>
-                  <label className="block text-sm font-medium text-slate-700 mb-2">
+                  <label className="block text-sm font-medium text-base-content mb-2">
                     Description
                   </label>
 

@@ -24,11 +24,11 @@ const LatestResolved = () => {
         {/* Header */}
 
         <div className="text-center mb-12">
-          <h2 className="text-3xl md:text-4xl font-bold text-black">
+          <h2 className="text-3xl md:text-4xl font-bold text-base-content">
             Latest Resolved Issues
           </h2>
 
-          <p className="mt-3 text-base md:text-lg text-gray-700 leading-relaxed">
+          <p className="mt-3 text-base md:text-lg  text-base-content leading-relaxed">
             Recently resolved community issues
           </p>
         </div>
@@ -42,7 +42,7 @@ const LatestResolved = () => {
             : data?.map((issue) => (
                 <div
                   key={issue._id}
-                  className="bg-white rounded-3xl overflow-hidden border border-slate-200 shadow-sm hover:shadow-xl transition duration-300"
+                  className="bg-base-100 rounded-3xl overflow-hidden border border-base-300 shadow-sm hover:shadow-xl transition duration-300"
                 >
                   {/* image */}
                   <div className="relative">
@@ -63,27 +63,27 @@ const LatestResolved = () => {
 
                   {/* content */}
                   <div className="p-5">
-                    <p className="text-sm text-blue-600 font-medium">
+                    <p className="text-sm text-primary font-medium">
                       {issue.category}
                     </p>
 
-                    <h2 className="mt-2 text-xl font-bold text-slate-800">
+                    <h2 className="mt-2 text-xl font-bold text-base-content">
                       {issue.title}
                     </h2>
 
-                    <p className="mt-3 text-sm text-slate-500 line-clamp-2">
+                    <p className="mt-3 text-sm text-base-content/70 line-clamp-2">
                       {issue.description}
                     </p>
 
                     {/* location */}
-                    <div className="mt-4 flex items-center gap-2 text-sm text-slate-500">
+                    <div className="mt-4 flex items-center gap-2 text-sm text-base-content/70">
                       <FaMapMarkerAlt />
                       {issue.location}
                     </div>
 
                     {/* footer */}
                     <div className="mt-6 flex justify-between items-center">
-                      <div className="flex items-center gap-2 text-slate-600">
+                      <div className="flex items-center gap-2 text-base-content/80">
                         <FaArrowUp />
                         {issue.upvote}
                       </div>

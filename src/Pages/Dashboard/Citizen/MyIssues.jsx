@@ -119,13 +119,13 @@ const MyIssues = () => {
 
   return (
     <div className="max-w-7xl mx-auto px-2 sm:px-4 py-6 sm:py-10">
-      <h2 className="text-2xl sm:text-3xl font-bold text-center mb-6 sm:mb-8">
+      <h2 className="text-2xl text-base-content sm:text-3xl font-bold text-center mb-6 sm:mb-8">
         My Reported Issues
       </h2>
 
-      <div className="overflow-x-auto bg-white rounded-2xl shadow-lg">
-        <table className="table table-xs sm:table-sm md:table-md">
-          <thead className="bg-gray-100">
+      <div className="overflow-x-auto bg-base-100 rounded-2xl shadow-lg border border-base-300">
+        <table className="table table-xs sm:table-sm md:table-md text-base-content">
+          <thead className="bg-base-200">
             <tr>
               <th>Image</th>
               <th>Issue Name</th>
@@ -149,7 +149,7 @@ const MyIssues = () => {
                 </td>
 
                 <td>
-                  <div className="max-w-30 sm:max-w-45 md:max-w-55 truncate font-medium">
+                  <div className="max-w-30 sm:max-w-45 md:max-w-55 truncate font-medium text-base-content">
                     {issue.title}
                   </div>
                 </td>

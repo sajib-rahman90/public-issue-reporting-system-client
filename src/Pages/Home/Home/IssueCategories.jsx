@@ -37,11 +37,11 @@ const IssueCategories = () => {
           transition={{ duration: 0.6 }}
           className="text-center max-w-3xl mx-auto mb-12"
         >
-          <h2 className="text-3xl md:text-4xl font-bold text-black">
+          <h2 className="text-3xl md:text-4xl font-bold text-base-content">
             Issues You Can Report
           </h2>
 
-          <p className="mt-3 text-base md:text-lg text-gray-700 leading-relaxed">
+          <p className="mt-3 text-base md:text-lg text-base-content/70 leading-relaxed">
             Citizens can easily report various public infrastructure issues
             affecting their communities.
           </p>
@@ -61,16 +61,18 @@ const IssueCategories = () => {
               whileHover={{
                 y: -8,
               }}
-              className="card bg-white border border-base-300 rounded-3xl hover:shadow-xl transition-all duration-300"
+              className="card bg-base-100 border border-base-300 rounded-3xl hover:shadow-xl transition-all duration-300"
             >
               <div className="card-body items-center text-center">
                 <div className="text-primary mb-3">{item.icon}</div>
 
-                <h3 className="text-lg md:text-xl font-semibold ">
+                <h3 className="text-lg md:text-xl font-semibold text-base-content ">
                   {item.title}
                 </h3>
 
-                <p className="text-sm leading-relaxed">{item.description}</p>
+                <p className="text-sm leading-relaxed text-base-content/70">
+                  {item.description}
+                </p>
               </div>
             </motion.div>
           ))}
