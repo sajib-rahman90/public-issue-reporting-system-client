@@ -18,6 +18,10 @@ It is designed as a real-world civic management system where every issue is trac
 
 - Live Website: https://public-issue-reporting-system-sajib.netlify.app
 
+- GitHub Client Repository Link: https://github.com/sajib-rahman90/public-issue-reporting-system-client
+
+- GitHub Server Repository Link: https://github.com/sajib-rahman90/public-issue-reporting-system-server
+
 ---
 
 ## 🔐 Admin Credentials
